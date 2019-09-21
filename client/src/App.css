@@ -13,6 +13,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-left: 50px;
 }
 .react-calendar{
     height:300px;
@@ -28,8 +29,9 @@ body{
 }
 .fc-event{
     background: rgb(2,0,36);
-background: linear-gradient(to top, #21376c, #182848);
-border:none;
+    background: linear-gradient(to top, #21376c, #182848);
+    border:none;
+    
 }
 
 .fc-time-grid .fc-slats .fc-minor td {
@@ -57,6 +59,7 @@ border:none;
     display:flex;
     justify-content:space-between;
     background: #eee;
+    align-items:center;
 }
 .makeStyles-root-1{
     padding-right:50px;
