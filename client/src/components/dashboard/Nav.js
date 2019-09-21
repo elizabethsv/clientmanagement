@@ -8,6 +8,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import PermContactCalendarIcon from '@material-ui/icons/PermContactCalendar';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -38,7 +39,7 @@ export const Nav = () =>{
     return(
         <div id="nav">
             <h3>APPNAME</h3>
-            <div><span>Chat</span></div>
+            <ChatBubbleIcon/>
         </div>
     )
 }
