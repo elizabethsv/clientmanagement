@@ -1,15 +1,79 @@
+body{
+    font-family:Roboto;
+    margin: 0;
+}
 .container{
     display:flex;
-    justify-content: space-around;
+    justify-content: space-between;
     height:auto;
+
 }
 .fc{
-    width:50%;
+    width:90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .react-calendar{
     height:300px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12);
+    border:none;
+    max-width: 300px;
 }
 .fc-unthemed td.fc-today{
-    background: #777;
+    background: rgba(149, 198, 242, 0.14)
+}
+.fc-button-primary{
+    font-family:Roboto;
+}
+.fc-event{
+    background: rgb(2,0,36);
+background: linear-gradient(to top, #21376c, #182848);
+border:none;
+}
+
+.fc-time-grid .fc-slats .fc-minor td {
+    border-top-style: solid;
+}
+.fc-time-grid-container{
+    height: 80vh;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.fc-ltr .fc-axis{
+    border-top-style:none;
+}
+.fc-widget-content{
+    border:none;
+}
+.fc-unthemed th{
+    font-size: .8em;
+    padding:5px;
+}
+.fc-time-grid {
+    font-size: .8em;
+}
+
+#nav{
+    display:flex;
+    justify-content:space-between;
+    background: #eee;
+}
+.makeStyles-root-1{
+    padding-right:50px;
+}
+
+#schedule-right{
+    display:flex;
+    flex-direction:column;
+    justify-content: space-evenly;
+    align-items:center;
+    width:60%;
+}
+.schedule-options{
+    height: 200px;
+    width:300px;
+    text-align:center;
+}
+.schedule-options>h3{
+    font-weight:300
 }

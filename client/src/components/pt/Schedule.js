@@ -1,19 +1,17 @@
 import React from 'react'
 import FullCalendar from '@fullcalendar/react'
 import timeGridPlugin from '@fullcalendar/timegrid';
+import Paper from '@material-ui/core/Paper'
+import Button from '@material-ui/core/Button';
+import '../../main.scss'
 
-import '../../main.scss' // webpack must be configured to do this
 
-export default class Schedule extends React.Component {
+
+
+export class Schedule extends React.Component {
 
 
   render() {
-      let events =[
-          {
-            
-        }
-      ]
-    
     return (
         <React.Fragment>
       <FullCalendar defaultView="timeGridWeek" header = {{
@@ -22,6 +20,8 @@ export default class Schedule extends React.Component {
         right:  'timeGridWeek, timeGridDay'
       }} 
       plugins={[ timeGridPlugin ]}
+      themeSystem='Lux'
+      style={'height:80vh'}
       events={[{
         id: 'a',
             title: 'testing',
@@ -43,5 +43,14 @@ export default class Schedule extends React.Component {
     )
   }
 
+}
 
+export const Notes = () =>{
+    return(
+        <Paper className="schedule-options">
+            <h3>Notes</h3>
+            
+
+        </Paper>
+    )
 }
