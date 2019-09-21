@@ -2,27 +2,17 @@ import React from 'react'
 import FullCalendar from '@fullcalendar/react'
 import timeGridPlugin from '@fullcalendar/timegrid';
 import Paper from '@material-ui/core/Paper'
-import Button from '@material-ui/core/Button';
+import interactionPlugin from '@fullcalendar/interaction'; // for selectable
+// import dayGridPlugin from '@fullcalendar/daygrid'; // for dayGridMonth view
 import '../../main.scss'
 
-
-
-
-export class Schedule extends React.Component {
-
-
-  render() {
-    return (
-        <React.Fragment>
-      <FullCalendar defaultView="timeGridWeek" header = {{
-        left:   'prev,next',
-        center: 'title',
-        right:  'timeGridWeek, timeGridDay'
-      }} 
-      plugins={[ timeGridPlugin ]}
-      themeSystem='Lux'
-      style={'height:80vh'}
-      events={[{
+const useStyles = {
+    calendar:{
+        height: "80vh"
+    }
+}
+const classes = useStyles
+let appts = [{
         id: 'a',
             title: 'testing',
             start: '2019-09-20T12:30:00',
@@ -36,21 +26,45 @@ export class Schedule extends React.Component {
             start: '2019-09-21T12:30:00',
             end: '2019-09-21T14:00:00',
             allDay: false,
-        }]}
+        }]
+
+//***CALENDAR*****/
+export const Schedule = () => {
+    const [selectedDate, setSelectedDate] = React.useState(appts)
+
+    const addDate = (info) =>{
+        setSelectedDate(selectedDate.concat({id: 'c', title:'clientname',start: info.startStr, end: info.endStr}))
+        console.log(selectedDate)
+    }
+    
+
+    return (
+        <React.Fragment>
+      <FullCalendar defaultView="timeGridWeek" header = {{
+        left:   'prev,next',
+        center: 'title',
+        right:  'timeGridWeek, timeGridDay'
+      }} 
+      plugins={[ timeGridPlugin, interactionPlugin ]}
+      selectable={true}
+      selectMirror={true}
+      selectOverlap={false}
+      style={classes.calendar}
+      select={(info)=>addDate(info)}
+      events={selectedDate}
        />
        
          </React.Fragment>
     )
-  }
 
 }
-
+/**SIDE NOTES***/
 export const Notes = () =>{
     return(
-        <Paper className="schedule-options">
+        <div className="schedule-options">
             <h3>Notes</h3>
             
 
-        </Paper>
+        </div>
     )
 }
