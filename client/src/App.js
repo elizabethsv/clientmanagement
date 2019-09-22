@@ -1,17 +1,14 @@
 import React,{Component} from 'react';
 
-import Calendar from 'react-calendar';
+// import Calendar from 'react-calendar';
+import ClientList from './components/pt/ClientList'
 import {Schedule,Notes} from './components/pt/Schedule'
 import Button from '@material-ui/core/Button';
 import './App.css';
 import {Nav, LeftNav} from './components/dashboard/Nav'
 
 class App extends Component {
-  state = {
-    date: new Date(),
-  }
  
-  onChange = date => this.setState({ date })
  
   render() {
     return (
@@ -23,10 +20,7 @@ class App extends Component {
         <Schedule/>
         <div id="schedule-right">
           <Button variant="contained" color="primary">Add Appointment</Button>
-        <Calendar
-          onChange={this.onChange}
-          value={this.state.date}
-        />
+        <ClientList/>
         <Notes className="schedule-options"/>
         </div>
       </div>
