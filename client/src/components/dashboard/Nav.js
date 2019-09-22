@@ -51,7 +51,7 @@ export const LeftNav = ()=>{
        
       <Paper className={classes.paper}>
         <MenuList>
-        <Avatar className={classes.avatar}/>
+      
           <MenuItem><HomeIcon/></MenuItem>
           <MenuItem><DateRangeIcon/></MenuItem>
           <MenuItem><PermContactCalendarIcon/></MenuItem>
