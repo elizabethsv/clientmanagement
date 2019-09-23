@@ -4,7 +4,8 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
-import AddAppt from './components/pt/AddAppt'
+import MaterialUIPickers from './components/pt/AddAppt'
+import SignInSide from './components/users/Login'
 
 ReactDOM.render(
 
@@ -12,8 +13,10 @@ ReactDOM.render(
 <Switch>
     <Route exact path="/" component={App}/>
     <Route path="/schedule" component={App}/>
-    <Route path="/addappt" component={AddAppt}/>
-</Switch>
+    <Route path="/addappt" component={MaterialUIPickers}/>
+    <Route path="/login" component={SignInSide}/>
+
+    </Switch>
 </BrowserRouter>
 
 , document.getElementById('root'));
