@@ -1,6 +1,7 @@
 import React from 'react'
+import { getMinutes } from 'date-fns/esm'
 
-const ClientSelection =(props)=>{
+export const ClientSelection =(props)=>{
     const createClientOptions= ()=>{
         let optionsList = []
         for(let i = 0; i< props.clients.length; i++){
@@ -18,19 +19,9 @@ const ClientSelection =(props)=>{
     )
 }
 
-const TimeSelection = () =>{
-    return(
-    <select>
-        <option value="30">
-            30 min
-        </option>
-        <option value="45">
-            45 min
-        </option>
-        <option value="60">
-            60 min
-        </option>
-    </select>
-    )
-}
-export default ClientSelection
+// export const TimeSelection = (props) =>{
+
+//     return(
+    
+//     )
+// }
