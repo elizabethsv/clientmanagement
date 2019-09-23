@@ -45,30 +45,22 @@ export default function MaterialUIPickers() {
         
     },[])
 
-    
-    // const createClientOptions= ()=>{
-    //     let optionsList = []
-    //     console.log(optionsList)
-    //     for(let i = 0; i< clientData.length; i++){
-    //         optionsList.push(<option key={clientData[i].id} value={clientData[i].id}>{clientData[i].firstname}</option>)
+    const handleClientSelection =(e)=>{
+        let clientId = e.target.value
+        setSelectedClient(clientId)
+    }
+
+    // const handleSubmit = () =>{
+    //     axios({
+    //         method: 'post',
+    //         url: 'http://localhost:5000/addsession',
+    //         data: {
+    //             title: 
+    //             start: this.state.start,
+    //             end: this.state.end
+    //             }
+    //         })
     //     }
-    //     return optionsList
-    // }
-
-
-
-
-    const handleSubmit = () =>{
-        axios({
-            method: 'post',
-            url: 'http://localhost:5000/addsession',
-            data: {
-                title: this.state.client,
-                start: this.state.start,
-                end: this.state.end
-                }
-            })
-        }
     
 
        
@@ -106,11 +98,11 @@ export default function MaterialUIPickers() {
 
                 
 
-                <ClientSelection clients={clientData}/>
+                <ClientSelection clients={clientData} getClient={handleClientSelection}/>
                 {/* <TimeSelection /> */}
 
-                <select onChange={handleGetMin}>
-                    <option value="none" selected disabled hidden>
+                <select onChange={handleGetMin} defaultValue="none">
+                    <option value="none" disabled hidden>
                         Select Length
                     </option>
                     <option value="30">
