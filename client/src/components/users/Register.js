@@ -26,7 +26,7 @@ const Registration = () =>{
         
     }
     return(
-        <div id="registration">
+        <div className="form">
             <label>First Name</label>
             <input type="text" name="firstname" onChange={handleTextChange}/>
             <label>Last Name</label>
