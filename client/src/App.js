@@ -8,18 +8,24 @@ import './App.css';
 import {Nav, LeftNav} from './components/dashboard/Nav'
 
 class App extends Component {
+  
+
  
+  routeChange=()=> {
+    let path = `/addappt`;
+    this.props.history.push(path);
+  }
  
   render() {
     return (
       <React.Fragment>
-        <Nav/>
+
         
       <div className="container">
-      <LeftNav/> 
+
         <Schedule/>
         <div id="schedule-right">
-          <Button variant="contained" color="primary">Add Appointment</Button>
+          <Button variant="contained" color="primary" onClick={()=>{this.routeChange()}}>Add Appointment</Button>
         <ClientList/>
         <Notes className="schedule-options"/>
         </div>

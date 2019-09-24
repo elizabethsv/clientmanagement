@@ -6,17 +6,21 @@ import * as serviceWorker from './serviceWorker';
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import MaterialUIPickers from './components/pt/AddAppt'
 import SignInSide from './components/users/Login'
+import BaseLayout from './components/dashboard/BaseLayout'
 
 ReactDOM.render(
 
 <BrowserRouter>
+<BaseLayout>
 <Switch>
+    
     <Route exact path="/" component={App}/>
     <Route path="/schedule" component={App}/>
     <Route path="/addappt" component={MaterialUIPickers}/>
     <Route path="/login" component={SignInSide}/>
 
     </Switch>
+    </BaseLayout>
 </BrowserRouter>
 
 , document.getElementById('root'));

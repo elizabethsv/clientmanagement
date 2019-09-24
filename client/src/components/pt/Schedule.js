@@ -1,10 +1,8 @@
 import React, {Component} from 'react'
 import FullCalendar from '@fullcalendar/react'
 import timeGridPlugin from '@fullcalendar/timegrid';
-import Paper from '@material-ui/core/Paper'
 import interactionPlugin from '@fullcalendar/interaction'; // for selectable
 // import dayGridPlugin from '@fullcalendar/daygrid'; // for dayGridMonth view
-import axios from 'axios'
 import '../../main.scss'
 
 const useStyles = {
@@ -40,9 +38,10 @@ export class Schedule extends Component{
     
     updateAppt = (info) =>{
         let apptid = info.event.id
-        let start = info.event.start.toISOString()
-        let end = info.event.end.toISOString()
-        
+        let start = info.event.start
+        let end = info.event.end
+        console.log(start)
+        console.log(end)
         fetch(`http://localhost:5000/appts/${apptid}`, {
             method: 'PUT',
             headers: {
@@ -55,27 +54,31 @@ export class Schedule extends Component{
           })
     }
       
-        render(){
-    return (
-        <React.Fragment>
-      <FullCalendar defaultView="timeGridWeek" header = {{
-        left:   'prev,next',
-        center: 'title',
-        right:  'timeGridWeek, timeGridDay'
-      }} 
-      plugins={[ timeGridPlugin, interactionPlugin ]}
-      selectable={true}
-      selectMirror={true}
-      selectOverlap={false}
-      style={classes.calendar}
-      editable={true}
-      eventDrop={(info)=>this.updateAppt(info)}
-    //   select={(info)=>addDate(info)}
-      events={{url: 'http://localhost:5000/appts'}}
-       />
-       
-         </React.Fragment>
-    )
+    render(){
+        return (
+            <React.Fragment>
+                <FullCalendar defaultView="timeGridWeek" 
+                                header = {{
+                                    left:   'prev,next',
+                                    center: 'title',
+                                    right:  'timeGridWeek, timeGridDay'
+                                }} 
+                            
+                                plugins={[ timeGridPlugin, interactionPlugin ]}
+                                selectable={true}
+                                selectMirror={true}
+                                selectOverlap={false}
+                                nowIndicator={true}
+                                style={classes.calendar}
+                                editable={true}
+                                eventClick={()=>alert('clicked')}
+                                eventDrop={(info)=>this.updateAppt(info)}
+                                //   select={(info)=>addDate(info)}
+                                events={{url: 'http://localhost:5000/appts'}}
+                />
+                                
+            </React.Fragment>
+                )
     }
 
 }

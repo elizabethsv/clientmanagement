@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   User.associate = function(models) {
     User.hasOne(models.Role)
+    User.hasMany(models.PtSession)
   };
   return User;
 };

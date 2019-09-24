@@ -6,6 +6,7 @@ const ClientList = (props) =>{
         <div>Client
             <input type="text" placeholder="search"/>
             <button>button</button>
+            {clients.map(client=><p>{client.id}</p>)}
         </div>
     )
 }
