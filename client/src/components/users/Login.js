@@ -1,7 +1,12 @@
 import React,{useState} from 'react'
 import axios from 'axios'
+import { setAuthenticationHeader } from '../../utlities/authenticate'
+import { connect } from 'react-redux'
 
-const Login = () =>{
+
+
+
+const Login = (props) =>{
 
     const [user, setUser] = useState({email: '', password: ''})
 
@@ -14,24 +19,39 @@ const Login = () =>{
     
 
 const handleLogin=()=>{
-    axios({
-        method: 'post',
-        url: 'http://localhost:5000/login',
-        data:{
-            email: user.email,
-            password: user.password
-        }
+    axios.post('http://localhost:5000/login',
+    {
+        email: user.email,
+        password: user.password
+    }).then(response=>{
+      const token = response.data.token
+      localStorage.setItem('jsonwebtoken', token)
+      setAuthenticationHeader(token)
+      props.onLogin(token)
+      props.history.push('/')
     })
-    
 }
   return(
-    <div id="login">
+    <div className="form-container">
+      <div className="form-background">
+        <h1>APP TITLE</h1>
+      </div>
+      <div className="form">
+      <h2>Login</h2>
+      <label>E-mail</label>
       <input type="text" name="email" onChange={handleTextChange}/>
+      <label>Password</label>
       <input type="password" name="password" onChange={handleTextChange}/>
       <button onClick={handleLogin}>Login</button>
       <p>Don't have an account? Sign up here.</p>
+      </div>
     </div>
   )
 }
 
-export default Login
+const mapDispatchToProps = (dispatch) =>{
+  return {
+      onLogin: (token) => dispatch({type:'ON_LOGIN', token: token})
+  }
+}
+export default connect(null, mapDispatchToProps)(Login)
