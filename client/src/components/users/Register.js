@@ -18,9 +18,9 @@ const Registration = () =>{
             url: 'http://localhost:5000/register-trainer',
             data:{
                 firstname: user.firstname,
-            lastname: user.lastname,
-            email: user.email,
-            password: user.password
+                lastname: user.lastname,
+                email: user.email,
+                password: user.password
             }
         })
         
