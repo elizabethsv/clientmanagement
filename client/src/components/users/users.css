@@ -1,5 +1,53 @@
-#registration{
-    display:flex;
-    flex-direction: column;
-    align-items:center;
+body{
+    background: #222831;
+    margin:0;
 }
+
+.form-container{
+    display:flex;
+    align-items:center;
+    height:100vh;
+}
+
+.form, .form-background{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width:50%;
+}
+.form-background{
+    width: 50%;
+    opacity: .8;
+    height: 100vh;
+    background-image: url(/static/media/login.5b2a1d43.jpg);
+    background-size: cover;
+    justify-content:center;
+    color:white;
+}
+.form-background > h1{
+    border-bottom:1px solid #00adb5;
+    font-size:4em;
+}
+.form >h2{
+    color:#00adb5;
+    font-size:2em;
+}
+
+.form{
+    color:#eee;  
+}
+
+.form > input{
+    border:none;
+    border-bottom:1px solid #00adb5;
+    outline:none;
+    padding:10px;
+    background:transparent;
+    color: #eee;
+    margin: 0px 0px 10px 0px;
+}
+
+.form >input:focus, .form>input:active{
+    background: #13161b
+}
+
