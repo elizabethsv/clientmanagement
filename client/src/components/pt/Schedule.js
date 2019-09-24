@@ -12,24 +12,6 @@ const useStyles = {
 }
 const classes = useStyles
 
-
-// let appts = [{
-//         id: 'a',
-//             title: 'testing',
-//             start: '2019-09-20T12:30:00',
-//             end: '2019-09-20T01:00:00',
-//             allDay: false
-//       },
-        
-//         {
-//             id: 'a',
-//             title: 'test2',
-//             start: '2019-09-21T12:30:00',
-//             end: '2019-09-21T14:00:00',
-//             allDay: false,
-//         }]
-
-//***CALENDAR*****/
 export class Schedule extends Component{
     constructor(){
         super()
@@ -53,6 +35,13 @@ export class Schedule extends Component{
             })
           })
     }
+
+    
+
+    getApptInfo = (info) =>{
+        let apptid = info.event.id
+        console.log(apptid)
+    }
       
     render(){
         return (
@@ -71,12 +60,12 @@ export class Schedule extends Component{
                                 nowIndicator={true}
                                 style={classes.calendar}
                                 editable={true}
-                                eventClick={()=>alert('clicked')}
+                                eventClick={(info)=>this.getApptInfo(info)}
                                 eventDrop={(info)=>this.updateAppt(info)}
                                 //   select={(info)=>addDate(info)}
                                 events={{url: 'http://localhost:5000/appts'}}
                 />
-                                
+               
             </React.Fragment>
                 )
     }
