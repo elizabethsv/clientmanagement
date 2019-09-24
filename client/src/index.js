@@ -8,21 +8,23 @@ import MaterialUIPickers from './components/pt/AddAppt'
 import SignInSide from './components/users/Login'
 import BaseLayout from './components/dashboard/BaseLayout'
 import SchedulePage from './components/pt/SchedulePage'
+import Register from './components/users/Register'
 
 ReactDOM.render(
-
 <BrowserRouter>
 <BaseLayout>
-<Switch>
+    <Switch>
     
     <Route exact path="/" component={App}/>
     <Route path="/schedule" component={SchedulePage}/>
     <Route path="/addappt" component={MaterialUIPickers}/>
     <Route path="/login" component={SignInSide}/>
-
+    <Route path="/register" component={Register}/>
     </Switch>
     </BaseLayout>
 </BrowserRouter>
+
+
 
 , document.getElementById('root'));
 
