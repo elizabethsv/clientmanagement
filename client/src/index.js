@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {createStore} from 'redux'
+import {Provider} from 'react-redux'
+import reducer from './store/reducer'
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -10,11 +13,12 @@ import BaseLayout from './components/dashboard/BaseLayout'
 import SchedulePage from './components/pt/SchedulePage'
 import Register from './components/users/Register'
 
+const store = createStore(reducer)
+
 ReactDOM.render(
 <BrowserRouter>
 <BaseLayout>
     <Switch>
-    
     <Route exact path="/" component={App}/>
     <Route path="/schedule" component={SchedulePage}/>
     <Route path="/addappt" component={MaterialUIPickers}/>
