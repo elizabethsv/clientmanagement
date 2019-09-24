@@ -4,7 +4,7 @@ const app = express();
 const PORT = 5000
 const models = require('./models')
 const cors = require('cors')
-// const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 // const account= require('./routes/users')
 const bcrypt = require('bcrypt')
 const saltRounds = 10
@@ -14,6 +14,32 @@ const saltRounds = 10
 
 app.use(cors())
 app.use(express.json())
+
+const authenticate = (req,res,next)=>{
+    let headers = req.headers['authorization']
+    if(headers){
+        const token = headers.split(' ')[1]
+        let decoded = jwt.verify(token, 'privatekey')
+        if(decoded){
+            const email = decoded.email
+            models.User.findOne({
+                where:{
+                    email:email
+                }
+            }).then(user=>{
+                if(user){
+                    next()
+                }else{
+                    res.json({message:'error'})
+                }
+            })
+        }else{
+            res.json({error: 'unauthorized access'})
+        }
+    }else{
+        res.json({error: 'unauthorized access'})
+    }
+}
 
 app.post('/register-trainer', (req,res)=>{
     let firstname= req.body.firstname
@@ -41,6 +67,29 @@ app.post('/register-trainer', (req,res)=>{
         })
 })
 
+app.post('/login',(req,res)=>{
+    let email = req.body.email
+    let password = req.body.password 
+
+    models.User.findOne({
+        where:{email:email},
+        attributes: ['id', 'email','password']
+    }).then(user=>{
+        if(user){
+            bcrypt.compare(password, user.get('password'))
+            .then(response=>{
+                if(response){
+                    let token = jwt.sign({email:user.get('email')}, 'privatekey')
+                    res.json({token:token})
+                }else{
+                    console.log('error')
+                }
+            })
+        }else{
+            console.log('error')
+        }
+    })
+})
 
 
 app.get('/appts',(req,res)=>{
@@ -122,4 +171,5 @@ app.post('/addsession',(req,res)=>{
 
 app.listen(PORT, ()=>{
     console.log("server is running")
+    
 })
