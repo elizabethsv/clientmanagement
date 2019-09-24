@@ -41,6 +41,28 @@ app.post('/register-trainer', (req,res)=>{
         })
 })
 
+app.post('/login',(req,res)=>{
+    let email = req.body.email
+    let password = req.body.password 
+
+    models.User.findOne({
+        where:{email:email},
+        attributes: ['id', 'email','password']
+    }).then(user=>{
+        if(user){
+            bcrypt.compare(password, user.get('password'))
+            .then(response=>{
+                if(response){
+                    console.log('logged in')
+                }else{
+                    console.log('error')
+                }
+            })
+        }else{
+            console.log('error')
+        }
+    })
+})
 
 
 app.get('/appts',(req,res)=>{
