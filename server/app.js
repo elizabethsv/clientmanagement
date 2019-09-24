@@ -37,6 +37,45 @@ app.get('/appts',(req,res)=>{
     
 })
 
+
+app.post('/addsession',(req,res)=>{
+    let clientid = req.body.clientid
+    let start = req.body.start
+    let end = req.body.end
+    
+    models.User.findOne({
+        where: {
+            id:clientid
+        },
+        attributes: ['id','firstname']
+    }).then(user=>{
+       let appt= models.PtSession.create({
+                title: user.firstname,
+                start: start,
+                end: end,
+                allDay: false, 
+                clientid: clientid
+            })
+            res.json({appt})
+    })
+
+    
+    
+
+
+    
+})
+//PULL FROM USER DB WHERE ROLE = 'CLIENT'
+app.get('/clients', (req, res)=>{
+    models.User.findAll({
+        where: {
+            roleid: 2
+        }
+    }).then(client=>{
+        res.json(client)
+    })
+})
+
 app.put('/appts/:apptid',(req,res)=>{
     let apptid = req.params.apptid
     let start = req.body.start
@@ -54,8 +93,8 @@ app.put('/appts/:apptid',(req,res)=>{
 
 app.post('/addsession',(req,res)=>{
     let title= req.body.title
-    let start= '2019-11-12 08:30'
-    let end = '2019-11-12 09:00'
+    let start= req.body.start
+    let end = req.body.end
     let allDay = false
     let PtSession = models.PtSession.create({
         title: title,

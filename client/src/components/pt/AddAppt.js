@@ -9,6 +9,8 @@ import {
 import DateFnsUtils from '@date-io/date-fns'
 import axios from 'axios'
 import {ClientSelection,TimeSelection} from './Selections'
+import {Nav, LeftNav} from '../dashboard/Nav'
+
 
 
 
@@ -28,8 +30,7 @@ export default function MaterialUIPickers() {
         let min = e.target.value
         let oldDate = selectedDate
         let endDate = new Date(oldDate.getTime()+min*60000)
-        setEndTime({end: endDate})
-        return endDate
+        setEndTime(endDate)
 
     }
 
@@ -50,24 +51,33 @@ export default function MaterialUIPickers() {
         setSelectedClient(clientId)
     }
 
-    // const handleSubmit = () =>{
-    //     axios({
-    //         method: 'post',
-    //         url: 'http://localhost:5000/addsession',
-    //         data: {
-    //             title: 
-    //             start: this.state.start,
-    //             end: this.state.end
-    //             }
-    //         })
-    //     }
+    const handleSubmit = () =>{
+        console.log(setEnd)
+        axios({
+            method: 'post',
+            url: 'http://localhost:5000/addsession',
+            data: {
+                start: selectedDate.toISOString(),
+                end: setEnd.toISOString(),
+                clientid: setClient,
+                }
+            })
+        }
     
 
        
         return(
-            <div id="add-appt-container">
+            <React.Fragment>
+
+                <div className="container">
+
+                <div id="add-appt-container">
+               <h2>Add New Appointment</h2>
+            
+
                
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                
                 <KeyboardDatePicker
                     disableToolbar
                     variant="inline"
@@ -96,6 +106,7 @@ export default function MaterialUIPickers() {
 
                 </MuiPickersUtilsProvider>
 
+
                 
 
                 <ClientSelection clients={clientData} getClient={handleClientSelection}/>
@@ -117,12 +128,14 @@ export default function MaterialUIPickers() {
                 </select>
                
 
-               <button>
+               <button onClick={handleSubmit}>
                    Add Appointment
                </button>
 
            
                 </div>
+                </div>
+                </React.Fragment>
                 
                
             

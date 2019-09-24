@@ -2,6 +2,7 @@ import React from 'react'
 import { getMinutes } from 'date-fns/esm'
 
 export const ClientSelection =(props)=>{
+    
     const createClientOptions= ()=>{
         let optionsList = []
         for(let i = 0; i< props.clients.length; i++){
@@ -13,7 +14,10 @@ export const ClientSelection =(props)=>{
         return optionsList
     }
     return(
-    <select>
+    <select onChange={props.getClient} defaultValue="none">
+        <option value="none" disabled hidden>
+            Select client
+        </option>
         {createClientOptions()}
     </select>
     )

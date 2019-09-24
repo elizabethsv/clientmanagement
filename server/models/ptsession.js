@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     allDay: DataTypes.BOOLEAN
   }, {});
   PtSession.associate = function(models) {
-
+    PtSession.belongsTo(models.User, {foreignKey: 'clientid'})
   };
   return PtSession;
 };
