@@ -23,9 +23,3 @@ export const ClientSelection =(props)=>{
     )
 }
 
-// export const TimeSelection = (props) =>{
-
-//     return(
-    
-//     )
-// }

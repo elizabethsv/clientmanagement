@@ -7,6 +7,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import MaterialUIPickers from './components/pt/AddAppt'
 import SignInSide from './components/users/Login'
 import BaseLayout from './components/dashboard/BaseLayout'
+import SchedulePage from './components/pt/SchedulePage'
 
 ReactDOM.render(
 
@@ -15,7 +16,7 @@ ReactDOM.render(
 <Switch>
     
     <Route exact path="/" component={App}/>
-    <Route path="/schedule" component={App}/>
+    <Route path="/schedule" component={SchedulePage}/>
     <Route path="/addappt" component={MaterialUIPickers}/>
     <Route path="/login" component={SignInSide}/>
 
