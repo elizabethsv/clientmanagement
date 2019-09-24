@@ -6,8 +6,8 @@ const models = require('./models')
 const cors = require('cors')
 // const jwt = require('jsonwebtoken')
 // const account= require('./routes/users')
-// const bcrypt = require('bcrypt')
-// const saltRounds = 10
+const bcrypt = require('bcrypt')
+const saltRounds = 10
 
 
 
@@ -20,15 +20,28 @@ app.post('/register-trainer', (req,res)=>{
     let lastname=req.body.lastname
     let email = req.body.email
     let password = req.body.password
-    let user = models.User.create({
-        firstname: firstname,
-        lastname: lastname,
-        email: email,
-        password: password
-    })
-   
-   res.json({user})
+
+    models.User.findOne({
+        where: {email:email}
+    }).then(user=>{
+        if(user){
+            res.send('username taken')
+        }else{
+            bcrypt.hash(password,saltRounds).then((hash)=>{
+                models.User.create({
+                    firstname: firstname,
+                    lastname: lastname,
+                    email: email,
+                    password: hash,
+                    roleid:1
+                    })
+                }).then(user=>res.json(user))
+                .catch(e=>console.log(e))
+            }
+        })
 })
+
+
 
 app.get('/appts',(req,res)=>{
     models.PtSession.findAll({

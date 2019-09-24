@@ -20,6 +20,8 @@ import DateRangeIcon from '@material-ui/icons/DateRange';
 import PermContactCalendarIcon from '@material-ui/icons/PermContactCalendar';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
+import { Link } from 'react-router-dom'
+
 
 const drawerWidth = 240;
 
@@ -28,8 +30,8 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
   },
   appBar: {
-    background: '#f0f5f9',
-    color: 'black',
+    background: '#222831',
+    color: '#eee',
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -121,7 +123,7 @@ export default function MiniDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Mini variant drawer
+            Client Management
           </Typography>
         </Toolbar>
       </AppBar>
@@ -146,15 +148,17 @@ export default function MiniDrawer(props) {
         </div>
         <Divider />
         <List>
-            {['Home', 'Schedule', 'Clients'].map((text, i)=>(
-                <ListItem button key={text}>
+            {[{title: 'Home', path:'/'}, {title:'Schedule', path:'/schedule'},{title: 'Client', path:"/"}].map((text, i)=>(
+                <Link to={text.path}>
+                <ListItem button key={text.title}>
                 <ListItemIcon>
                     {i===0 ? <HomeIcon/>:null}
                     {i===1 ? <DateRangeIcon/>:null}
                     {i===2 ? <PermContactCalendarIcon/>:null}
                 </ListItemIcon>
-                <ListItemText primary={text}/>
+                <ListItemText primary={text.title}/>
               </ListItem>
+              </Link>
             ))}
             
               
