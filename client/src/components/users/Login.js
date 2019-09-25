@@ -34,7 +34,7 @@ const handleLogin=()=>{
   return(
     <div className="form-container">
       <div className="form-background">
-        <h1>APP TITLE</h1>
+        <h1>title</h1>
       </div>
       <div className="form">
       <h2>Login</h2>

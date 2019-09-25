@@ -30,7 +30,7 @@ ReactDOM.render(
           
             
             <RouteWithLayout layout={BaseLayout} exact path="/" component={App}/>
-            <RouteWithLayout layout={BaseLayout} path="/schedule" component={requireAuth(SchedulePage)}/>
+            <RouteWithLayout layout={BaseLayout} path="/schedule" component={SchedulePage}/>
             <RouteWithLayout layout={BaseLayout} path="/addappt" component={MaterialUIPickers}/>
             <RouteWithLayout layout={PublicLayout} path="/login" component={Login}/>
             <RouteWithLayout layout={PublicLayout} path="/register" component={Register}/>

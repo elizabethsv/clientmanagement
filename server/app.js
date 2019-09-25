@@ -94,6 +94,14 @@ app.post('/login',(req,res)=>{
 
 app.get('/appts',(req,res)=>{
     models.PtSession.findAll({
+        where:{status:'active'},
+        attributes:['id','title', 'start', 'end', 'allDay']
+    }).then(appt=>res.json(appt))
+    
+})
+app.get('/cancelledappts',(req,res)=>{
+    models.PtSession.findAll({
+        where:{status:'cancelled'},
         attributes:['id','title', 'start', 'end', 'allDay']
     }).then(appt=>res.json(appt))
     
@@ -116,7 +124,8 @@ app.post('/addsession',(req,res)=>{
                 start: start,
                 end: end,
                 allDay: false, 
-                clientid: clientid
+                clientid: clientid,
+                status: 'active'
             })
             res.json({appt})
     })
@@ -153,16 +162,32 @@ app.put('/appts/:apptid',(req,res)=>{
 
 })
 
+app.put('/cancelappt/:apptid', (req,res)=>{
+    let apptid = req.params.apptid
+    let status = req.body.status
+
+    let values = {status:status}
+
+    let selector ={
+        where:{id:apptid}
+    }
+    
+    models.PtSession.update(values, selector)
+        .then(updatedAppt => {
+            res.json(updatedAppt)
+        })
+})
+
 app.post('/addsession',(req,res)=>{
     let title= req.body.title
     let start= req.body.start
     let end = req.body.end
-    let allDay = false
     let PtSession = models.PtSession.create({
         title: title,
         start: start,
         end: end,
-        allDay: allDay,
+        allDay: false,
+        status:'active'
     })
     
     res.json({PtSession})

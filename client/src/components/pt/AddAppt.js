@@ -14,8 +14,8 @@ import {Nav, LeftNav} from '../dashboard/Nav'
 
 
 
-export default function MaterialUIPickers() {
-    const [selectedDate, setSelectedDate] = useState(new Date('2019-01-01T21:00:00'));
+export default function MaterialUIPickers(props) {
+    const [selectedDate, setSelectedDate] = useState(new Date());
     const [clientData, setClientData] = useState([])
     const [setClient, setSelectedClient] = useState({id: '', firstName: ''})
     const [setEnd, setEndTime] = useState({end: null})
@@ -57,9 +57,10 @@ export default function MaterialUIPickers() {
             data: {
                 start: selectedDate.toISOString(),
                 end: setEnd.toISOString(),
-                clientid: setClient,
+                clientid: setClient
                 }
             })
+            props.history.push('/schedule')
         }
 
     return(

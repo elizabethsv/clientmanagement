@@ -7,7 +7,7 @@ const ClientList = (props) =>{
             {/* <h3>Clients</h3> */}
             <input type="text" placeholder="filter by client"/>
             <button>Search</button>
-            {clients.map(client=><p>{client.id}</p>)}
+            {clients.map((client)=><p key={client.id}>{client.id}</p>)}
         </div>
     )
 }

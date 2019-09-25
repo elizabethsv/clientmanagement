@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     start: DataTypes.DATE,
     end: DataTypes.DATE,
-    allDay: DataTypes.BOOLEAN
+    allDay: DataTypes.BOOLEAN,
+    status: DataTypes.STRING,
   }, {});
   PtSession.associate = function(models) {
     PtSession.belongsTo(models.User, {foreignKey: 'clientid'})
