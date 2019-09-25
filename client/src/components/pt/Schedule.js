@@ -1,24 +1,33 @@
-import React, {Component} from 'react'
+import React, {useState} from 'react'
 import FullCalendar from '@fullcalendar/react'
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction'; // for selectable
 // import dayGridPlugin from '@fullcalendar/daygrid'; // for dayGridMonth view
 import '../../main.scss'
+import CancelAppt from './CancelAppt'
+import Popover from '@material-ui/core/Popover';
 
-const useStyles = {
-    calendar:{
-        height: "80vh"
-    }
-}
-const classes = useStyles
+import {makeStyles} from '@material-ui/core/styles'
 
-export class Schedule extends Component{
-    constructor(){
-        super()
-        this.state={appts: {}}
+const useStyles = makeStyles({
+    paper:{
+        position: 'absolute',
+        padding: '20px 10px'
     }
+})
+
+
+export const Schedule= () => {
     
-    updateAppt = (info) =>{
+    const classes = useStyles()
+
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [xCoords, setxCoords] = useState(null)
+    const [yCoords, setyCoords] = useState(null)
+    const [selectedAppt, setAppt] = useState(null)
+    
+    
+    const updateAppt = (info) =>{
         let apptid = info.event.id
         let start = info.event.start
         let end = info.event.end
@@ -35,15 +44,25 @@ export class Schedule extends Component{
             })
           })
     }
-
     
 
-    getApptInfo = (info) =>{
-        let apptid = info.event.id
-        console.log(apptid)
-    }
+   const handleClick = (info) =>{
+        setAppt(info.event.id)
+        setxCoords(info.jsEvent.pageX-60)
+        setyCoords(info.jsEvent.pageY+10)
+        setAnchorEl(info.jsEvent.currentTarget)
+        
+   }
+
+   const handleClose = ()=>{
+       setAnchorEl(null)
+   }
+
+   let open = Boolean(anchorEl)
+   let id = open ? 'simple-popover' : undefined
+
+   
       
-    render(){
         return (
             <React.Fragment>
                 <FullCalendar defaultView="timeGridWeek" 
@@ -60,17 +79,36 @@ export class Schedule extends Component{
                                 nowIndicator={true}
                                 style={classes.calendar}
                                 editable={true}
-                                eventClick={(info)=>this.getApptInfo(info)}
-                                eventDrop={(info)=>this.updateAppt(info)}
+                                eventClick={(info)=>handleClick(info)}
+                                eventDrop={(info)=>updateAppt(info)}
                                 //   select={(info)=>addDate(info)}
                                 events={{url: 'http://localhost:5000/appts'}}
                 />
+                            <Popover
+                                id={id}
+                                open={open}
+                                classes={{paper:classes.paper}}
+                                anchorEl={anchorEl}
+                                anchorPosition={{left: xCoords, top: yCoords}}
+                                anchorReference='anchorPosition'
+                                onClose={handleClose}
+                                anchorOrigin={{
+                                vertical: 'top',
+                                horizontal: 'center',
+                                }}
+                                transformOrigin={{
+                                vertical: 'center',
+                                horizontal: 'center',
+                                }}
+                            >
+                               <CancelAppt apptid={selectedAppt}/>
+                </Popover>
                
             </React.Fragment>
                 )
-    }
-
 }
+
+
 /**SIDE NOTES***/
 export const Notes = () =>{
     return(
