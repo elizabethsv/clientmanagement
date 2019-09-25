@@ -84,7 +84,7 @@ export const Schedule= () => {
                                 //   select={(info)=>addDate(info)}
                                 eventSources={[{url: 'http://localhost:5000/appts'},
                                         {url: 'http://localhost:5000/cancelledappts',
-                                            backgroundColor: 'red'}]}
+                                            backgroundColor: '#f73859'}]}
                 />
                             <Popover
                                 id={id}
