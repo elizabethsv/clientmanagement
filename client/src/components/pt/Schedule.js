@@ -12,7 +12,7 @@ import {makeStyles} from '@material-ui/core/styles'
 const useStyles = makeStyles({
     paper:{
         position: 'absolute',
-        padding: '20px 10px'
+        padding: '0 10px 10px 10px'
     }
 })
 
@@ -20,11 +20,10 @@ const useStyles = makeStyles({
 export const Schedule= () => {
     
     const classes = useStyles()
-
-    const [anchorEl, setAnchorEl] = useState(null);
+    const [anchorEl, setAnchorEl] = useState(null)
     const [xCoords, setxCoords] = useState(null)
     const [yCoords, setyCoords] = useState(null)
-    const [selectedAppt, setAppt] = useState(null)
+    const [selectedAppt, setAppt] = useState({id: null, startdate: null})
     
     
     const updateAppt = (info) =>{
@@ -47,7 +46,9 @@ export const Schedule= () => {
     
 
    const handleClick = (info) =>{
-        setAppt(info.event.id)
+       let start = info.event.start
+       console.log(start)
+        setAppt({id: info.event.id})
         setxCoords(info.jsEvent.pageX-60)
         setyCoords(info.jsEvent.pageY+10)
         setAnchorEl(info.jsEvent.currentTarget)
@@ -77,12 +78,13 @@ export const Schedule= () => {
                                 selectMirror={true}
                                 selectOverlap={false}
                                 nowIndicator={true}
-                                style={classes.calendar}
                                 editable={true}
                                 eventClick={(info)=>handleClick(info)}
                                 eventDrop={(info)=>updateAppt(info)}
                                 //   select={(info)=>addDate(info)}
-                                events={{url: 'http://localhost:5000/appts'}}
+                                eventSources={[{url: 'http://localhost:5000/appts'},
+                                        {url: 'http://localhost:5000/cancelledappts',
+                                            backgroundColor: 'red'}]}
                 />
                             <Popover
                                 id={id}
@@ -101,8 +103,9 @@ export const Schedule= () => {
                                 horizontal: 'center',
                                 }}
                             >
-                               <CancelAppt apptid={selectedAppt}/>
-                </Popover>
+                                <h4>Options</h4>
+                               <CancelAppt appt={selectedAppt}/>
+                            </Popover>
                
             </React.Fragment>
                 )

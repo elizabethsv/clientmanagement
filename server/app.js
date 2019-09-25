@@ -94,6 +94,14 @@ app.post('/login',(req,res)=>{
 
 app.get('/appts',(req,res)=>{
     models.PtSession.findAll({
+        where:{status:'active'},
+        attributes:['id','title', 'start', 'end', 'allDay']
+    }).then(appt=>res.json(appt))
+    
+})
+app.get('/cancelledappts',(req,res)=>{
+    models.PtSession.findAll({
+        where:{status:'cancelled'},
         attributes:['id','title', 'start', 'end', 'allDay']
     }).then(appt=>res.json(appt))
     
@@ -116,7 +124,8 @@ app.post('/addsession',(req,res)=>{
                 start: start,
                 end: end,
                 allDay: false, 
-                clientid: clientid
+                clientid: clientid,
+                status: 'active'
             })
             res.json({appt})
     })
@@ -156,7 +165,7 @@ app.put('/appts/:apptid',(req,res)=>{
 app.put('/cancelappt/:apptid', (req,res)=>{
     let apptid = req.params.apptid
     let status = req.body.status
-    
+
     let values = {status:status}
 
     let selector ={

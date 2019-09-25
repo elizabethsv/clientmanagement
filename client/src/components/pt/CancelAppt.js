@@ -3,10 +3,8 @@ import axios from 'axios'
 import CancelIcon from '@material-ui/icons/Cancel'
 
 const CancelAppt = (props) =>{
-    
    const handleCancellation=()=>{
-     let apptid= props.apptid
-
+     let apptid= props.appt.id
      console.log(apptid)
     axios({
         method: 'put',
@@ -17,7 +15,11 @@ const CancelAppt = (props) =>{
     })
    }
     return(
+      <React.Fragment>
         <button onClick={handleCancellation}>Cancel Appt</button>
+
+      </React.Fragment>
+        
         
     )
 }
