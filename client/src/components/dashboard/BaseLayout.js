@@ -148,7 +148,7 @@ export default function MiniDrawer(props) {
         </div>
         <Divider />
         <List>
-            {[{title: 'Home', path:'/'}, {title:'Schedule', path:'/schedule'},{title: 'Client', path:"/"}].map((text, i)=>(
+            {[{title: 'Home', path:'/'}, {title:'Schedule', path:'/schedule'},{title: 'Client', path:"/clients"}].map((text, i)=>(
                 <Link to={text.path}>
                 <ListItem button key={text.title}>
                 <ListItemIcon>
