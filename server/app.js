@@ -147,6 +147,25 @@ app.get('/clients', (req, res)=>{
     })
 })
 
+
+app.post('/clients/addclient',(req,res)=>{
+    let firstName = req.body.firstname
+    let lastName = req.body.lastname
+    let email = req.body.email
+    let phone = req.body.phone
+
+    let user = models.User.create({
+        firstname: firstName,
+        lastname: lastName,
+        email: email,
+        password: null,
+        phone: phone,
+        roleid: 2
+    })
+    res.json({user})
+})
+
+
 app.put('/appts/:apptid',(req,res)=>{
     let apptid = req.params.apptid
     let start = req.body.start
