@@ -3,7 +3,7 @@ import axios from 'axios'
 import './users.css'
 
 
-const Registration = () =>{
+const Registration = (props) =>{
     const [user, setUser] = useState({firstname: '', lastname: '', email: '', password: '', })
 
     const handleTextChange = (e) =>{
@@ -22,19 +22,17 @@ const Registration = () =>{
                 email: user.email,
                 password: user.password
             }
-        })
+        }).then(()=>props.history.push('/login'))
         
     }
     return(
         <div className="form">
-            <label>First Name</label>
-            <input type="text" name="firstname" onChange={handleTextChange}/>
-            <label>Last Name</label>
-            <input type="text" name="lastname" onChange={handleTextChange}/>
-            <label>E-mail</label>
-            <input type="text" name="email" onChange={handleTextChange}/>
-            <label>Password</label>
-            <input type="password" name="password" onChange={handleTextChange}/>
+           <h2>Registration</h2>
+            <input type="text" name="firstname" placeholder="First Name" onChange={handleTextChange}/>
+            <input type="text" name="lastname" placeholder="Last Name" onChange={handleTextChange}/>
+            <input type="text" name="phone" placeholder="Phone Number" onChange={handleTextChange}/>
+            <input type="text" name="email" placeholder="E-Mail" onChange={handleTextChange}/>
+            <input type="password" name="password" placeholder="Password" onChange={handleTextChange}/>
             <button onClick={handleRegistration}>Register</button>
         </div>
     )
