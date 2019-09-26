@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const Op = require('./models').Sequelize.Op;
+const Op = require('../models').Sequelize.Op;
 
 
 router.get('/',(req,res)=>{
@@ -89,7 +89,7 @@ router.put('/:apptid',(req,res)=>{
 })
 
 
-router.put('/cancelappt/:apptid', (req,res)=>{
+router.put('/cancel/:apptid', (req,res)=>{
     let apptid = req.params.apptid
     let status = req.body.status
 

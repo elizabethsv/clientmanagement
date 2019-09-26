@@ -8,7 +8,7 @@ const cors = require('cors')
 // const account= require('./routes/users')
 
 
-const appts = require('./routes/tickets')
+const appts = require('./routes/appts')
 const clients = require('./routes/clients')
 const users = require('./routes/user')
 
