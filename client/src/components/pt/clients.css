@@ -5,9 +5,9 @@
 
 #client-name{
     background-color:transparent;
-
     border-bottom:1px solid #00adb5;
     margin-bottom: 10px;
+    margin: 0 20px 20px 20px;
 }
 
 #client-contact>span{

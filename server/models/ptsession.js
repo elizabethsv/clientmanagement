@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.STRING,
   }, {});
   PtSession.associate = function(models) {
-    PtSession.belongsTo(models.User, {foreignKey: 'clientid'})
+    PtSession.belongsTo(models.User, {foreignKey: 'trainerid'})
+    PtSession.belongsTo(models.Clients, {foreignKey: 'clientid'})
   };
   return PtSession;
 };
