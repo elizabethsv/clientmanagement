@@ -24,7 +24,7 @@ router.post('/add',(req,res)=>{
     let start = req.body.start
     let end = req.body.end
     
-    models.User.findOne({
+    models.Clients.findOne({
         where: {
             id:clientid
         },

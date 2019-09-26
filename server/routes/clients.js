@@ -2,28 +2,23 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/', (req, res)=>{
-    models.User.findAll({
-        where: {
-            roleid: 2
-        }
-    }).then(client=>{
+    models.Clients.findAll().then(client=>{
         res.json(client)
     })
 })
 
-router.post('/addclient',(req,res)=>{
+router.post('/add',(req,res)=>{
     let firstName = req.body.firstname
     let lastName = req.body.lastname
     let email = req.body.email
     let phone = req.body.phone
 
-    let user = models.User.create({
+    let user = models.Clients.create({
         firstname: firstName,
         lastname: lastName,
         email: email,
         password: null,
-        phone: phone,
-        roleid: 2
+        phone: phone
     })
     res.json({user})
 })
@@ -31,10 +26,9 @@ router.post('/addclient',(req,res)=>{
 router.get('/info/:clientid', (req,res)=>{
     let clientid = req.params.clientid
 
-    models.User.findAll({
+    models.Clients.findAll({
         where: {
-            id: clientid,
-            roleid: 2
+            id: clientid
         }
     }).then(client=>{
         res.json(client)
