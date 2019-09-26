@@ -59,8 +59,8 @@ export default function MaterialUIPickers(props) {
                 end: setEnd.toISOString(),
                 clientid: setClient
                 }
-            })
-            props.history.push('/schedule')
+            }).then(()=>props.history.push('/schedule'))
+            
         }
 
     return(
