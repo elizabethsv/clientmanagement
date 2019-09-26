@@ -165,6 +165,18 @@ app.post('/clients/addclient',(req,res)=>{
     res.json({user})
 })
 
+app.get('/clientinfo/:clientid', (req,res)=>{
+    let clientid = req.params.clientid
+
+    models.User.findAll({
+        where: {
+            id: clientid,
+            roleid: 2
+        }
+    }).then(client=>{
+        res.json(client)
+    })
+})
 
 app.put('/appts/:apptid',(req,res)=>{
     let apptid = req.params.apptid

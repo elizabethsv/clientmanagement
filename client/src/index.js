@@ -18,7 +18,7 @@ import RouteWithLayout from './RouteWithLayout'
 import PublicLayout from './PublicLayout'
 import AddClient from './components/pt/AddClients'
 import Client from './components/pt/Clients'
-
+import ClientInfo from './components/pt/ClientInfo'
 const store = createStore(reducer)
 
 const token = localStorage.getItem('jsonwebtoken')
@@ -36,6 +36,7 @@ ReactDOM.render(
             <RouteWithLayout layout={BaseLayout} path="/addappt" component={MaterialUIPickers}/>
             <RouteWithLayout layout={BaseLayout} path="/clients" component={Client}/>
             <RouteWithLayout layout={BaseLayout} path="/addclient" component={AddClient}/>
+            <RouteWithLayout layout={BaseLayout} path="/clientinfo/:id" component={ClientInfo}/>
             <RouteWithLayout layout={PublicLayout} path="/login" component={Login}/>
             <RouteWithLayout layout={PublicLayout} path="/register" component={Register}/>
             
