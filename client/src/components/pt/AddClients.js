@@ -23,7 +23,7 @@ const AddClient = (props) =>{
             url: 'http://localhost:5000/clients/addclient',
             data: {
                 
-                firstname: clientData.lastname,
+                firstname: clientData.firstname,
                 lastname: clientData.lastname,
                 email: clientData.email,
                 phone: clientData.phone
@@ -33,7 +33,7 @@ const AddClient = (props) =>{
         }
      
     return(
-        <div className="form">
+        <div className="dashboard-form">
             <label>First Name</label>
             <input type="text" name="firstname" onChange={handleChange}/>
             <label>Last Name</label>

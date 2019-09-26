@@ -12,11 +12,12 @@ const CancelAppt = (props) =>{
         data:{
             status:'cancelled'
         }
-    })
+    }).then(()=>props.refetchEvents())
+    
    }
     return(
       <React.Fragment>
-        <button onClick={handleCancellation}>Cancel Appt</button>
+        <button id="cxl-btn" onClick={handleCancellation}>Cancel Appt</button>
 
       </React.Fragment>
         
