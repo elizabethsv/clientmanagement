@@ -18,7 +18,7 @@ const App =()=>{
         <div class="Upcoming-Appts">
           <h3>Upcoming Appointments</h3>
           {appts.map(appt=>{
-            return appt.title
+            return <div>{appt.title}</div>
           })}
         </div>
         <div class="child">
