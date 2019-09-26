@@ -9,7 +9,7 @@ const ClientInfo = ({ match }) =>{
         console.log(match.params.id)
 
         const fetchClients = () =>{
-            axios.get(`http://localhost:5000/clientinfo/${id}`)
+            axios.get(`http://localhost:5000/clients/info/${id}`)
                 .then(client=>{
                     setClientData(client.data)
         })
@@ -24,7 +24,6 @@ const ClientInfo = ({ match }) =>{
             {client.firstname} {client.lastname}
             </h3>
             </div>
-            
 
         )}
     )

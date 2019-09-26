@@ -20,7 +20,7 @@ const AddClient = (props) =>{
     const handleSubmit = () =>{
         axios({
             method: 'post',
-            url: 'http://localhost:5000/clients/addclient',
+            url: 'http://localhost:5000/clients/add',
             data: {
                 
                 firstname: clientData.firstname,

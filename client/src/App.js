@@ -10,7 +10,7 @@ const App =()=>{
 
   useEffect(()=>{
     const fetchAppts = () =>{
-      axios.get('http://localhost:5000/upcomingappts')
+      axios.get('http://localhost:5000/appts/upcoming')
         .then(appt=>{
           setUpcomingAppts(appt.data)
         })

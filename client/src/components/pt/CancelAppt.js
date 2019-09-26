@@ -8,7 +8,7 @@ const CancelAppt = (props) =>{
      console.log(apptid)
     axios({
         method: 'put',
-        url: `http://localhost:5000/cancelappt/${apptid}`,
+        url: `http://localhost:5000/appts/cancel/${apptid}`,
         data:{
             status:'cancelled'
         }
