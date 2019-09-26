@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import axios from 'axios'
 import { setAuthenticationHeader } from '../../utlities/authenticate'
 import { connect } from 'react-redux'
+import {Link} from 'react-router-dom'
 
 
 
@@ -32,20 +33,15 @@ const handleLogin=()=>{
     })
 }
   return(
-    <div className="form-container">
-      <div className="form-background">
-        <h1>title</h1>
-      </div>
+   
       <div className="form">
       <h2>Login</h2>
-      <label>E-mail</label>
-      <input type="text" name="email" onChange={handleTextChange}/>
-      <label>Password</label>
-      <input type="password" name="password" onChange={handleTextChange}/>
+      <input type="text" name="email" placeholder="email" onChange={handleTextChange}/>
+      <input type="password" name="password" placeholder="password" onChange={handleTextChange}/>
       <button onClick={handleLogin}>Login</button>
-      <p>Don't have an account? Sign up here.</p>
+      <p>Don't have an account? Sign up <Link to="/register">here</Link>.</p>
       </div>
-    </div>
+   
   )
 }
 

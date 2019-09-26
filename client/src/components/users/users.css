@@ -45,6 +45,11 @@ body{
     background:transparent;
     color: #eee;
     margin: 0px 0px 10px 0px;
+    width:60%;
+}
+.form > label{
+    font-size: 0.8em;
+    text-align:left;
 }
 
 .form >input:focus, .form>input:active{
