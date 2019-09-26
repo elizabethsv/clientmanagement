@@ -25,6 +25,7 @@ export const Schedule= () => {
     const [yCoords, setyCoords] = useState(null)
     const [selectedAppt, setAppt] = useState({id: null, startdate: null})
     
+    let calendarRef = React.createRef()
     
     const updateAppt = (info) =>{
         let apptid = info.event.id
@@ -62,6 +63,11 @@ export const Schedule= () => {
    let open = Boolean(anchorEl)
    let id = open ? 'simple-popover' : undefined
 
+   const refetchEvents=()=>{
+    let calendarApi = calendarRef.current.getApi()
+    calendarApi.refetchEvents()
+    }
+
    
       
         return (
@@ -72,7 +78,7 @@ export const Schedule= () => {
                                     center: 'title',
                                     right:  'timeGridWeek, timeGridDay'
                                 }} 
-                            
+                                ref={calendarRef}
                                 plugins={[ timeGridPlugin, interactionPlugin ]}
                                 selectable={true}
                                 selectMirror={true}
@@ -81,7 +87,6 @@ export const Schedule= () => {
                                 editable={true}
                                 eventClick={(info)=>handleClick(info)}
                                 eventDrop={(info)=>updateAppt(info)}
-                                //   select={(info)=>addDate(info)}
                                 eventSources={[{url: 'http://localhost:5000/appts'},
                                         {url: 'http://localhost:5000/cancelledappts',
                                             backgroundColor: '#f73859'}]}
@@ -104,11 +109,13 @@ export const Schedule= () => {
                                 }}
                             >
                                 <h4>Options</h4>
-                               <CancelAppt appt={selectedAppt}/>
+                               <CancelAppt appt={selectedAppt} refetchEvents={refetchEvents}/>
                             </Popover>
                
             </React.Fragment>
                 )
+
+   
 }
 
 
