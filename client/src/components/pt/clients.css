@@ -1,0 +1,80 @@
+#client-name > h3{
+    font-size:2em;
+    margin: 0;
+}
+
+#client-name{
+    background-color:transparent;
+
+    border-bottom:1px solid #00adb5;
+    margin-bottom: 10px;
+}
+
+#client-contact>span{
+    margin-right:20px
+}
+
+#progress,#sessions,#program,#payment{
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:black;
+    font-size:6rem;
+
+}
+.grid-h4{
+    font-size:0.3em;
+    color:#00adb5;
+    margin:0;
+    border-bottom:1px solid black;
+     
+}
+
+#client-details{
+    /* flex-direction:row; */
+    padding:20px;
+}
+
+#client-avatar{
+    border-radius:100%;
+    width:150px;
+    height:150px;
+    background-color:#eee;
+    margin:0 auto;
+    
+}
+#details{
+    background: transparent;
+    box-shadow: none;
+ 
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    grid-template-rows: 1.0fr 1fr;
+    grid-template-areas: "Upcoming-Appts . ." "Upcoming-Appts . .";
+    margin: 0 20px;
+    max-height:900px;
+  }
+
+  
+.Client-Info { 
+    grid-area: Upcoming-Appts; 
+    height: 100%;
+    margin-bottom:20px;
+    display:flex;
+    flex-direction: column;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    padding:10px;
+    color: #777;
+}
+
+.Client-Info > button{
+    align-self:flex-end;
+}
+.details-bold{
+    font-weight:800;
+    color: #393e46;
+}
