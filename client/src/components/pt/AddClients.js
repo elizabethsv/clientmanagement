@@ -22,14 +22,14 @@ const AddClient = (props) =>{
             method: 'post',
             url: 'http://localhost:5000/clients/add',
             data: {
-                
                 firstname: clientData.firstname,
                 lastname: clientData.lastname,
                 email: clientData.email,
                 phone: clientData.phone
                 }
-            })
-            props.history.push('/clients')
+            }).then(()=> props.history.push('/clients'))
+           
+        
         }
      
     return(
