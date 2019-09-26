@@ -19,9 +19,11 @@ const ClientInfo = ({ match }) =>{
 
     let clients = clientData.map((client)=>{
         return(
+            <div id="client-name">
             <h3 id="client" key={client.id}>
             {client.firstname} {client.lastname}
             </h3>
+            </div>
             
 
         )}

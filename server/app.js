@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken')
 // const account= require('./routes/users')
 const bcrypt = require('bcrypt')
 const saltRounds = 10
+const Op = require('./models').Sequelize.Op;
 
 
 
@@ -130,12 +131,24 @@ app.post('/addsession',(req,res)=>{
             res.json({appt})
     })
 
-    
-    
-
-
-    
 })
+
+
+app.get('/upcomingappts', (req,res)=>{
+    let todaysDate = new Date()
+    var newDateObj = new Date(todaysDate.getTime() + 180*60000)
+   
+    models.PtSession.findAll({
+        where:{
+            start: { 
+                [Op.between]: [todaysDate, newDateObj]
+              }
+        },
+        attributes:['id','title', 'start', 'end', 'allDay','clientid']
+    }).then(appt=>res.json(appt))
+})
+
+
 //PULL FROM USER DB WHERE ROLE = 'CLIENT'
 app.get('/clients', (req, res)=>{
     models.User.findAll({
