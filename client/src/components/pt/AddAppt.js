@@ -53,7 +53,7 @@ export default function MaterialUIPickers(props) {
         console.log(setEnd)
         axios({
             method: 'post',
-            url: 'http://localhost:5000/addsession',
+            url: 'http://localhost:5000/appts/add',
             data: {
                 start: selectedDate.toISOString(),
                 end: setEnd.toISOString(),

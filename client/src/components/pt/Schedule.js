@@ -88,7 +88,7 @@ export const Schedule= () => {
                                 eventClick={(info)=>handleClick(info)}
                                 eventDrop={(info)=>updateAppt(info)}
                                 eventSources={[{url: 'http://localhost:5000/appts'},
-                                        {url: 'http://localhost:5000/cancelledappts',
+                                        {url: 'http://localhost:5000/appts/cancelled',
                                             backgroundColor: '#f73859'}]}
                 />
                             <Popover
