@@ -43,11 +43,11 @@ const App =()=>{
                 {/* <div>{startDate}</div> */}
                 <div>{startTime}-{endTime}</div>
               </div>
-              
               </React.Fragment>
             ) 
-            
           })}
+
+<button>View All</button>
         </div>
         <div class="child">
           <h3>Active Clients</h3>

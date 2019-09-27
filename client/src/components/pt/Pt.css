@@ -1,17 +1,90 @@
+@media (min-width: 900px) {
+  
+ .fc{
+     margin: 0 auto;
+     width: 95%;
+     padding-left: 50px;
 
+ }
+ #schedule-right{
+    display:flex;
+    flex-direction:column;
+    justify-content: space-evenly;
+    align-items:center;
+    width:60%;
+}
+#client-management-list{
+    width:50%
+}
+
+    
+  }
+
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+    .container{
+        flex-direction:column;
+        align-items:center;
+        justify-content: center;
+   
+    }
+    .fc{
+        width: 110%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding:0;
+        align-items:center;
+        margin:0 auto;
+    }
+    .fc-toolbar.fc-header-toolbar{
+        display:flex;
+       
+        
+    }
+    .fc-toolbar h2{
+        font-size: 1em;
+        margin: 0 10px;
+    }
+    .fc-button-group > .fc-button:not(:first-child){
+        margin-left:10px;
+    }
+    #schedule-right{
+    display:flex;
+    justify-content:center;
+    }
+    #root .makeStyles-root-1{
+        padding-right:10px;
+    }
+    .makeStyles-content-10{
+        padding-left:5px;
+    }
+    .makeStyles-drawerClose-8{
+        display: none
+    }
+    #client-list-container{
+        flex-direction:column;
+    }
+    #client-management-list{
+        width:100%
+    }
+    
+
+    
+  }
 .container{
     display:flex;
     justify-content: space-between;
     height:auto;
 
-}
+} 
 
-.fc{
-    width:90%;
+ .fc{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-left: 50px;
+    
 }
 
 .fc-unthemed td.fc-today{
@@ -67,13 +140,9 @@
     padding-right:50px;
 }
 
-#schedule-right{
-    display:flex;
-    flex-direction:column;
-    justify-content: space-evenly;
-    align-items:center;
-    width:60%;
-}
+
+
+
 .schedule-options{
     height: 200px;
     width:300px;
@@ -148,7 +217,6 @@ input{
 
 #client-management-list{
     height:80vh;
-    width:50%;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     padding: 20px;
     text-align:center;
@@ -203,3 +271,8 @@ input{
 #cxl-btn:hover{
     background-color: #a13949;
 }
+
+#options{
+    text-align:center;
+}
+

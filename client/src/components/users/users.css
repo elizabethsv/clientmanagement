@@ -1,3 +1,41 @@
+@media (min-width: 900px) {
+    .form-background{
+        width: 50%;
+        opacity: .8;
+        height: 100vh;
+        background-image: url('../../images/login.jpg');
+        background-size: cover;
+        justify-content:center;
+        color:white;
+    }
+  
+    .form-background > h1{
+        border-bottom:1px solid #00adb5;
+        font-size:4em;
+    }
+       
+     }
+   
+   
+   @media (min-width: 320px) and (max-width: 480px) {
+     
+    .form-container{
+        justify-content: center;
+    }
+    .form-background{
+        display:none;
+    }
+    .form-container{
+        display:flex;
+        align-items:center;
+        height:100vh;
+        flex-direction: column
+    }
+    
+   
+       
+     }
+
 body{
     background: #222831;
     margin:0;
@@ -15,19 +53,8 @@ body{
     align-items:center;
     width:50%;
 }
-.form-background{
-    width: 50%;
-    opacity: .8;
-    height: 100vh;
-    background-image: url('../../images/login.jpg');
-    background-size: cover;
-    justify-content:center;
-    color:white;
-}
-.form-background > h1{
-    border-bottom:1px solid #00adb5;
-    font-size:4em;
-}
+
+
 .form >h2{
     color:#00adb5;
     font-size:2em;
