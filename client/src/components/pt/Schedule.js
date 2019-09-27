@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useLayoutEffect} from 'react'
 import FullCalendar from '@fullcalendar/react'
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction'; // for selectable
@@ -6,7 +6,8 @@ import interactionPlugin from '@fullcalendar/interaction'; // for selectable
 import '../../main.scss'
 import CancelAppt from './CancelAppt'
 import Popover from '@material-ui/core/Popover';
-
+import DesktopSchedule from './DesktopSchedule'
+import MobileSchedule from './MobileSchedule'
 import {makeStyles} from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
@@ -16,14 +17,31 @@ const useStyles = makeStyles({
     }
 })
 
+function useWindowSize() {
+    let [size, setSize] = useState([0, 0]);
+    useLayoutEffect(() => {
+      function updateSize() {
+        setSize([window.innerWidth, window.innerHeight]);
+      }
+      window.addEventListener('resize', updateSize);
+      updateSize();
+      return () => window.removeEventListener('resize', updateSize);
+    }, []);
+    return size;
+  }
 
-export const Schedule= () => {
+
+export const Schedule= (props) => {
     
     const classes = useStyles()
     const [anchorEl, setAnchorEl] = useState(null)
     const [xCoords, setxCoords] = useState(null)
     const [yCoords, setyCoords] = useState(null)
     const [selectedAppt, setAppt] = useState({id: null, startdate: null})
+    const [events, setEvents] = useState([{url: 'http://localhost:5000/appts'},
+    {url: 'http://localhost:5000/appts/cancelled',
+        backgroundColor: '#f73859'}])
+    
     
     let calendarRef = React.createRef()
     
@@ -68,29 +86,32 @@ export const Schedule= () => {
     calendarApi.refetchEvents()
     }
 
-   
+  
+        let [width, height] = useWindowSize();
+       
+  
+
+    const makeMobile=()=>{
+        if(width >900){
+            return <DesktopSchedule update={(info)=>updateAppt(info)} handleClick={handleClick} events={events}/>
+        }else{
+            return <MobileSchedule update={(info)=>updateAppt(info)} handleClick={handleClick} events={events}/>
+        }
+          
+        
+    }
+
+    const filterEvents=(id)=>{
+        let calendarApi = calendarRef.current.getApi()
+        calendarApi.getEventSourceById( id )
+    }
+
       
         return (
             <React.Fragment>
-                <FullCalendar defaultView="timeGridWeek" 
-                                header = {{
-                                    left:   'prev,next',
-                                    center: 'title',
-                                    right:  'timeGridWeek, timeGridDay'
-                                }} 
-                                ref={calendarRef}
-                                plugins={[ timeGridPlugin, interactionPlugin ]}
-                                selectable={true}
-                                selectMirror={true}
-                                selectOverlap={false}
-                                nowIndicator={true}
-                                editable={true}
-                                eventClick={(info)=>handleClick(info)}
-                                eventDrop={(info)=>updateAppt(info)}
-                                eventSources={[{url: 'http://localhost:5000/appts'},
-                                        {url: 'http://localhost:5000/appts/cancelled',
-                                            backgroundColor: '#f73859'}]}
-                />
+                 
+                 {makeMobile()}
+               
                             <Popover
                                 id={id}
                                 open={open}
@@ -108,7 +129,7 @@ export const Schedule= () => {
                                 horizontal: 'center',
                                 }}
                             >
-                                <h4>Options</h4>
+                                <h4 id="options">Options</h4>
                                <CancelAppt appt={selectedAppt} refetchEvents={refetchEvents}/>
                             </Popover>
                
