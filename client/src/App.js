@@ -18,11 +18,12 @@ const App =()=>{
     fetchAppts()
   },[])
   
-  
+  let d = new Date()
+  let todaysDate = (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear()
     return (
       <React.Fragment>
       <div id="welcome">
-        <h1>Welcome, (name)</h1>
+        <h1>{todaysDate}</h1>
       </div>
       <div class="grid-container">
         <div class="Upcoming-Appts">

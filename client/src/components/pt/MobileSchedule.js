@@ -8,6 +8,8 @@ import CancelAppt from './CancelAppt'
 import Popover from '@material-ui/core/Popover';
 
 const MobileSchedule = () =>{
+
+    let calendarRef = React.createRef()
     return(<FullCalendar defaultView="timeGridDay" 
                                 header = {{
                                     left:   'prev',
@@ -15,7 +17,7 @@ const MobileSchedule = () =>{
                                     right:  'next'
                                 }} 
                                 height={600}
-                                // ref={calendarRef}
+                                ref={calendarRef}
                                 plugins={[ timeGridPlugin, interactionPlugin ]}
                                 selectMirror={true}
                                 selectOverlap={false}
@@ -23,7 +25,9 @@ const MobileSchedule = () =>{
                                 editable={true}
                                 // eventClick={(info)=>handleClick(info)}
                                 // eventDrop={(info)=>updateAppt(info)}
-                                // eventSources={events}
+                                eventSources={[{url: 'http://localhost:5000/appts'},
+                                {url: 'http://localhost:5000/appts/cancelled',
+                                    backgroundColor: '#f73859'}]}
                 />)
 }
 

@@ -7,7 +7,10 @@ import '../../main.scss'
 import CancelAppt from './CancelAppt'
 import Popover from '@material-ui/core/Popover';
 
+
 const DesktopSchedule =(props)=>{
+    
+    let calendarRef = React.createRef()
    return( <FullCalendar defaultView="timeGridWeek" 
                                 header = {{
                                     left:   'prev,next',
@@ -15,7 +18,7 @@ const DesktopSchedule =(props)=>{
                                     right:  'timeGridWeek, timeGridDay'
                                 }} 
                                 height={600}
-                                // ref={calendarRef}
+                                ref={calendarRef}
                                 plugins={[ timeGridPlugin, interactionPlugin ]}
                                 selectMirror={true}
                                 selectOverlap={false}
@@ -23,7 +26,9 @@ const DesktopSchedule =(props)=>{
                                 editable={true}
                                 eventClick={(info)=>props.handleClick(info)}
                                 eventDrop={(info)=>props.update(info)}
-                                eventSources={props.events}
+                                eventSources={[{url: 'http://localhost:5000/appts'},
+                                {url: 'http://localhost:5000/appts/cancelled',
+                                    backgroundColor: '#f73859'}]}
                 />)
 }
 export default DesktopSchedule
