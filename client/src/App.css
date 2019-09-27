@@ -1,3 +1,40 @@
+@media (min-width: 900px) {
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr;
+        grid-template-rows: 1.0fr 1fr;
+        grid-template-areas: "Upcoming-Appts . ." "Upcoming-Appts . .";
+        margin: 0 20px;
+        max-height:900px;
+      }
+    
+      
+    .Upcoming-Appts { 
+        grid-area: Upcoming-Appts; 
+        height: 100%;
+        margin-bottom:20px;
+        display:flex;
+        flex-direction: column;
+        align-items:center;
+    }
+       
+     }
+   
+   
+   @media (min-width: 320px) and (max-width: 480px) {
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1.4fr 1.4fr 1.4fr;
+        grid-template-areas: "Upcoming-Appts Upcoming-Appts Upcoming-Appts Upcoming-Appts" ". . . .";
+      }
+      
+      .Upcoming-Appts { grid-area: Upcoming-Appts; }
+    
+       
+     }
+
+
 body{
     font-family:Roboto;
     margin: 0;
@@ -8,26 +45,7 @@ a{
     text-decoration:none;
     color:inherit;
 }
-.grid-container {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr;
-    grid-template-rows: 1.0fr 1fr;
-    grid-template-areas: "Upcoming-Appts . ." "Upcoming-Appts . .";
-    margin: 0 20px;
-    max-height:900px;
-  }
-.Upcoming-Appts, .child{
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-}
-  
-.Upcoming-Appts { 
-    grid-area: Upcoming-Appts; 
-    height: 100%;
-    margin-bottom:20px;
-    display:flex;
-    flex-direction: column;
-    align-items:center;
-}
+
 
 .Upcoming-Appts >div{
     background-color: #00adb5;
@@ -40,6 +58,9 @@ a{
 }
 .Upcoming-Appts >div:hover{
     background-color: #057379; /*change to btn color*/
+}
+.Upcoming-Appts, .child{
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 .child{

@@ -4,6 +4,8 @@ const app = express();
 const PORT = 5000
 global.models = require('./models')
 const cors = require('cors')
+const jwt = require('jsonwebtoken')
+
 
 // const account= require('./routes/users')
 
@@ -11,12 +13,6 @@ const cors = require('cors')
 const appts = require('./routes/appts')
 const clients = require('./routes/clients')
 const users = require('./routes/user')
-
-app.use(cors())
-app.use(express.json())
-app.use('/appts', appts)
-app.use('/clients', clients)
-app.use('/', users)
 
 const authenticate = (req,res,next)=>{
     let headers = req.headers['authorization']
@@ -43,6 +39,13 @@ const authenticate = (req,res,next)=>{
         res.json({error: 'unauthorized access'})
     }
 }
+app.use(cors())
+app.use(express.json())
+app.use('/appts', appts)
+app.use('/clients',authenticate, clients)
+app.use('/', users)
+
+
 
 
 app.listen(PORT, ()=>{

@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import ClientList from './ClientList'
+import FilterClient from './FilterClient'
 import {Schedule,Notes} from './Schedule'
 import Button from '@material-ui/core/Button';
 import './Pt.css'
@@ -22,8 +22,8 @@ class SchedulePage extends Component {
           <Schedule/>
           <div id="schedule-right">
             <Button variant="contained" color="inherit" onClick={()=>{this.routeChange()}}>Add Appointment</Button>
-            <ClientList/>
-            <Notes className="schedule-options"/>
+            {/* <FilterClient/>
+            <Notes className="schedule-options"/> */}
           </div>
         </div>
       </React.Fragment>

@@ -1,7 +1,7 @@
 import React from 'react'
 
 let clients =[{id:'person1'}, {id:'person2'}]
-const ClientList = (props) =>{
+const FilterClient = (props) =>{
     return (
         <div id="client-list">
             {/* <h3>Clients</h3> */}
@@ -12,4 +12,4 @@ const ClientList = (props) =>{
     )
 }
 
-export default ClientList
+export default FilterClient

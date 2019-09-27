@@ -31,12 +31,12 @@ ReactDOM.render(
         <Switch>
           
             
-            <RouteWithLayout layout={BaseLayout} exact path="/" component={App}/>
+            <RouteWithLayout layout={BaseLayout} exact path="/" component={requireAuth(App)}/>
             <RouteWithLayout layout={BaseLayout} path="/schedule" component={SchedulePage}/>
-            <RouteWithLayout layout={BaseLayout} path="/addappt" component={MaterialUIPickers}/>
-            <RouteWithLayout layout={BaseLayout} path="/clients" component={Client}/>
-            <RouteWithLayout layout={BaseLayout} path="/addclient" component={AddClient}/>
-            <RouteWithLayout layout={BaseLayout} path="/clientinfo/:id" component={ClientInfo}/>
+            <RouteWithLayout layout={BaseLayout} path="/addappt" component={requireAuth(MaterialUIPickers)}/>
+            <RouteWithLayout layout={BaseLayout} path="/clients" component={requireAuth(Client)}/>
+            <RouteWithLayout layout={BaseLayout} path="/addclient" component={requireAuth(AddClient)}/>
+            <RouteWithLayout layout={BaseLayout} path="/clientinfo/:id" component={requireAuth(ClientInfo)}/>
             <RouteWithLayout layout={PublicLayout} path="/login" component={Login}/>
             <RouteWithLayout layout={PublicLayout} path="/register" component={Register}/>
             
