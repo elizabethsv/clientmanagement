@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 // import FilterClient from './FilterClient'
 import {Schedule,Notes} from './Schedule'
-import './Pt.css'
+import '../Pt.css'
 
 
 
