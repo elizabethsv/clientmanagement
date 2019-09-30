@@ -28,6 +28,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
+    justifyContent: 'space-between'
   },
   appBar: {
     background: '#222831',
@@ -110,7 +111,7 @@ export default function MiniDrawer(props) {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar>
+        <Toolbar className={classes.root}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -125,6 +126,7 @@ export default function MiniDrawer(props) {
           <Typography variant="h6" noWrap>
             {/* title */}
           </Typography>
+          <ChatBubbleIcon className="chat-bubble"/>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -148,13 +150,17 @@ export default function MiniDrawer(props) {
         </div>
         <Divider />
         <List>
-            {[{title: 'Home', path:'/'}, {title:'Schedule', path:'/schedule'},{title: 'Client', path:"/clients"}].map((text, i)=>(
+            {[{title: 'Home', path:'/'}, 
+              {title:'Schedule', path:'/schedule'},
+              {title: 'Client', path:"/clients"},
+              {title: 'Finance', path:"#"}].map((text, i)=>(
                 <Link to={text.path}>
                 <ListItem button key={text.title}>
                 <ListItemIcon>
-                    {i===0 ? <HomeIcon/>:null}
-                    {i===1 ? <DateRangeIcon/>:null}
-                    {i===2 ? <PermContactCalendarIcon/>:null}
+                    {i===0 ? <HomeIcon key={i}/>:null}
+                    {i===1 ? <DateRangeIcon key={i}/>:null}
+                    {i===2 ? <PermContactCalendarIcon key={i}/>:null}
+                    {i===3 ? <AttachMoneyIcon key={i}/>:null}
                 </ListItemIcon>
                 <ListItemText primary={text.title}/>
               </ListItem>

@@ -21,8 +21,8 @@ const App =(props)=>{
   const handleClick = ()=>{
     props.history.push('/schedule')
   }
-  let d = new Date()
-  let todaysDate = (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear()
+  // let d = new Date()
+  // let todaysDate = (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear()
     return (
       <React.Fragment>
       <div id="welcome">

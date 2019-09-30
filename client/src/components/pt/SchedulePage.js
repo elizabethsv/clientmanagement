@@ -1,12 +1,8 @@
 import React,{Component} from 'react';
-import FilterClient from './FilterClient'
+// import FilterClient from './FilterClient'
 import {Schedule,Notes} from './Schedule'
-import Button from '@material-ui/core/Button';
 import './Pt.css'
 
-//have to seperate these!
-import { createMuiTheme, withStyles, makeStyles } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
 
 
 class SchedulePage extends Component {

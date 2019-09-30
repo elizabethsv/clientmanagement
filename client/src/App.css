@@ -32,7 +32,7 @@
         .grid-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1.4fr 1fr 1fr;
+            grid-template-rows: 1.4fr .5fr .5fr;
             grid-template-areas: 
             "Upcoming-Appts Upcoming-Appts";
         }
@@ -51,7 +51,11 @@
         #upcoming-appt{
             margin: 0 auto;
         }
-            
+        #active-clients, #messages, #revenue, #settings{
+            font-size:1em;
+            height: 130px;
+        }
+        
        
      }
 
@@ -121,3 +125,4 @@ a{
     color:black;
     cursor: pointer;
 }
+

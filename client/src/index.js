@@ -8,7 +8,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
-import MaterialUIPickers from './components/pt/AddAppt'
+import MaterialUIPickers from './components/pt/add_appts/AddAppt'
 import Login from './components/users/Login'
 import BaseLayout from './components/dashboard/BaseLayout'
 import SchedulePage from './components/pt/SchedulePage'

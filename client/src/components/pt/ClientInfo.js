@@ -13,8 +13,6 @@ const ClientInfo = ({ match }) =>{
 
     useEffect(()=>{
         let id = match.params.id
-        console.log(match.params.id)
-
         const fetchClients = () =>{
             axios.get(`http://localhost:5000/clients/info/${id}`)
                 .then(client=>{

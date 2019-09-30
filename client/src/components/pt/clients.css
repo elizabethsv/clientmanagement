@@ -25,6 +25,9 @@
         width:150px;
         height:150px;
     }
+    #progress,#sessions,#program,#payment{
+        font-size:6rem;
+    }
      }
    
    
@@ -50,6 +53,11 @@
 
      .Client-Info > button{
          margin-bottom: 10px;
+     }
+
+     #progress,#sessions,#program,#payment{
+         font-size:4rem;
+         height: 130px;
      }
    
        
@@ -77,7 +85,6 @@
     justify-content:center;
     align-items:center;
     color:black;
-    font-size:6rem;
     cursor: pointer;
 
 }
