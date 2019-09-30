@@ -276,3 +276,15 @@ input{
     text-align:center;
 }
 
+select {
+    margin-left: 10px;
+    height: 30px;
+    /* border: 1px solid #00adb5; */
+    background-color: #eee;
+    font-size: 16px;
+    margin:10px;
+  }
+
+select:focus{
+    outline:none;
+}

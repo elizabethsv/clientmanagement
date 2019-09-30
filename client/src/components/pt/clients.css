@@ -53,13 +53,16 @@
     align-items:center;
     color:black;
     font-size:6rem;
+    cursor: pointer;
 
 }
 .grid-h4{
     font-size:0.3em;
     color:#00adb5;
     margin:0;
-    border-bottom:1px solid black;
+    letter-spacing: 2px;
+    text-transform: lowercase;
+    font-weight:300;
      
 }
 
@@ -90,4 +93,12 @@
 .details-bold{
     font-weight:800;
     color: #393e46;
+}
+
+
+#client-avatar{
+    margin-bottom:30px;
+}
+#details>div{
+    padding:10px;
 }

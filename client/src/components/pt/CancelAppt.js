@@ -3,6 +3,7 @@ import axios from 'axios'
 import CancelIcon from '@material-ui/icons/Cancel'
 
 const CancelAppt = (props) =>{
+  
    const handleCancellation=()=>{
      let apptid= props.appt.id
      console.log(apptid)

@@ -10,7 +10,7 @@ import Popover from '@material-ui/core/Popover';
 
 const DesktopSchedule =(props)=>{
     
-    let calendarRef = React.createRef()
+    
    return( <FullCalendar defaultView="timeGridWeek" 
                                 header = {{
                                     left:   'prev,next',
@@ -18,7 +18,7 @@ const DesktopSchedule =(props)=>{
                                     right:  'timeGridWeek, timeGridDay'
                                 }} 
                                 height={600}
-                                ref={calendarRef}
+                                ref={props.reference}
                                 plugins={[ timeGridPlugin, interactionPlugin ]}
                                 selectMirror={true}
                                 selectOverlap={false}

@@ -21,7 +21,7 @@ class SchedulePage extends Component {
         <div className="container">
           <Schedule/>
           <div id="schedule-right">
-            <Button variant="contained" color="inherit" onClick={()=>{this.routeChange()}}>Add Appointment</Button>
+            <button onClick={()=>{this.routeChange()}}>Add Appointment</button>
             {/* <FilterClient/>
             <Notes className="schedule-options"/> */}
           </div>
