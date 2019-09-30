@@ -26,7 +26,7 @@ const App =(props)=>{
     return (
       <React.Fragment>
       <div id="welcome">
-        <h1>{todaysDate}</h1>
+        <h1>Welcome, (name)</h1>
       </div>
       <div class="grid-container">
         <div class="Upcoming-Appts">
