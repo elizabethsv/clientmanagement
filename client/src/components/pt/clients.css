@@ -8,7 +8,7 @@
         margin: 0 20px;
         max-height:900px;
       }
-    
+
       
     .Client-Info { 
         grid-area: Upcoming-Appts; 
@@ -20,12 +20,45 @@
         padding:10px;
         color: #777;
     }
+
+    #client-avatar{
+        width:150px;
+        height:150px;
+    }
+    #progress,#sessions,#program,#payment{
+        font-size:6rem;
+    }
      }
    
    
    @media (min-width: 320px) and (max-width: 480px) {
+       #client-name{
+           text-align:center;
+       }
+       #client-contact{
+           display:flex;
+           flex-direction:column;
+           align-items:center;
+       }
+     .Client-Info{
+         grid-area: Upcoming-Appts;
+         padding: 10px;
+         text-align:center;
+     }
      
- 
+     #client-avatar{
+         width:120px;
+         height:120px;
+     }
+
+     .Client-Info > button{
+         margin-bottom: 10px;
+     }
+
+     #progress,#sessions,#program,#payment{
+         font-size:4rem;
+         height: 130px;
+     }
    
        
      }
@@ -52,7 +85,6 @@
     justify-content:center;
     align-items:center;
     color:black;
-    font-size:6rem;
     cursor: pointer;
 
 }
@@ -73,10 +105,9 @@
 
 #client-avatar{
     border-radius:100%;
-    width:150px;
-    height:150px;
     background-color:#eee;
     margin:0 auto;
+    margin-bottom:30px;
     
 }
 #details{
@@ -96,9 +127,6 @@
 }
 
 
-#client-avatar{
-    margin-bottom:30px;
-}
 #details>div{
     padding:10px;
 }

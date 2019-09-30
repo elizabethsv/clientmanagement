@@ -6,15 +6,13 @@ import PaymentIcon from '@material-ui/icons/Payment';
 import TimelineIcon from '@material-ui/icons/Timeline';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
-import './clients.css'
+import '../clients.css'
 
 const ClientInfo = ({ match }) =>{
     const [clientData, setClientData] = useState([])
 
     useEffect(()=>{
         let id = match.params.id
-        console.log(match.params.id)
-
         const fetchClients = () =>{
             axios.get(`http://localhost:5000/clients/info/${id}`)
                 .then(client=>{

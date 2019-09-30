@@ -2,7 +2,7 @@
     .grid-container {
         display: grid;
         grid-template-columns: 1.5fr 1fr 1fr;
-        grid-template-rows: 1.0fr 1fr;
+        grid-template-rows: 1fr 1fr;
         grid-template-areas: "Upcoming-Appts . ." "Upcoming-Appts . .";
         margin: 0 20px;
         max-height:900px;
@@ -17,20 +17,45 @@
         flex-direction: column;
         align-items:center;
     }
+
+    .child{
+        height: 250px;
+    }
        
      }
    
    
    @media (min-width: 320px) and (max-width: 480px) {
-    .grid-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1.4fr 1.4fr 1.4fr;
-        grid-template-areas: "Upcoming-Appts Upcoming-Appts Upcoming-Appts Upcoming-Appts" ". . . .";
-      }
+        #welcome{
+            text-align:center;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1.4fr .5fr .5fr;
+            grid-template-areas: 
+            "Upcoming-Appts Upcoming-Appts";
+        }
+
+        .child{
+            height: auto;
+        }
       
-      .Upcoming-Appts { grid-area: Upcoming-Appts; }
-    
+        .Upcoming-Appts { 
+            grid-area: Upcoming-Appts; 
+            text-align:center;
+            margin-bottom:10px;
+            padding:10px;
+        }
+
+        #upcoming-appt{
+            margin: 0 auto;
+        }
+        #active-clients, #messages, #revenue, #settings{
+            font-size:1em;
+            height: 130px;
+        }
+        
        
      }
 
@@ -70,7 +95,6 @@ a{
     background-color: #eee;
     margin:0 10px 20px 10px;
     text-align:center;
-    height: 250px;
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 .child:hover{
@@ -101,3 +125,4 @@ a{
     color:black;
     cursor: pointer;
 }
+
