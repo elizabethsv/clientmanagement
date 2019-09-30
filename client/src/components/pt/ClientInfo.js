@@ -40,7 +40,15 @@ const ClientInfo = ({ match }) =>{
             <div className="grid-container">
                 <div className="Client-Info">
                     <div id="client-avatar"></div>
-                    <div id="details"></div>
+                    <div id="details">
+                        <div>
+                            Goal:
+                        </div>
+                        <div>
+                            Notes:
+                        </div>
+                    </div>
+                    <button>Edit</button>
                 </div>
                 <div className="child" id="progress">
                     <h4 className="grid-h4">Progress</h4>

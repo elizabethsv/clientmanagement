@@ -123,7 +123,7 @@ export default function MiniDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Client Management
+            {/* title */}
           </Typography>
         </Toolbar>
       </AppBar>

@@ -48,20 +48,23 @@ a{
 
 
 .Upcoming-Appts >div{
-    background-color: #00adb5;
+    background-color: #eee;
     padding: 20px;
     width:90%;
     margin-bottom:10px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     border-radius: 5px;
     cursor: pointer;
+    overflow:scroll;
 }
 .Upcoming-Appts >div:hover{
-    background-color: #057379; /*change to btn color*/
+    background-color: rgb(214, 212, 212); /*change to btn color*/
 }
 .Upcoming-Appts, .child{
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
+
+
 
 .child{
     background-color: #eee;
@@ -88,4 +91,13 @@ a{
 #upcoming-appt{
     display:flex;
     justify-content: space-between;
+}
+
+#active-clients, #messages, #revenue, #settings{
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:black;
+    cursor: pointer;
 }

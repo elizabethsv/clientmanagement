@@ -4,7 +4,7 @@ import axios from 'axios'
 
 
 
-const App =()=>{
+const App =(props)=>{
   
   const [upcomingAppts, setUpcomingAppts] = useState([])
 
@@ -18,6 +18,9 @@ const App =()=>{
     fetchAppts()
   },[])
   
+  const handleClick = ()=>{
+    props.history.push('/schedule')
+  }
   let d = new Date()
   let todaysDate = (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear()
     return (
@@ -48,18 +51,18 @@ const App =()=>{
             ) 
           })}
 
-<button>View All</button>
+<button onClick={handleClick}>View All</button>
         </div>
-        <div class="child">
+        <div class="child" id="active-clients">
           <h3>Active Clients</h3>
         </div>
-        <div class="child">
+        <div class="child" id="messages">
           <h3>Messages</h3>
         </div>
-        <div class="child">
+        <div class="child" id="revenue">
           <h3>Revenue</h3>
         </div>
-        <div class="child">
+        <div class="child" id="settings">
           <h3>Settings</h3>
         </div>
       </div>
