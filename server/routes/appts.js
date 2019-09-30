@@ -61,7 +61,7 @@ router.post('/add',(req,res)=>{
 
 router.get('/upcoming', (req,res)=>{
     let todaysDate = new Date()
-    var newDateObj = new Date(todaysDate.getTime() + 180*60000)
+    var newDateObj = new Date(todaysDate.getTime() + 360*60000)
    
     models.PtSession.findAll({
         where:{
@@ -69,6 +69,9 @@ router.get('/upcoming', (req,res)=>{
                 [Op.between]: [todaysDate, newDateObj]
               }
         },
+        order:[
+            ['start','ASC']
+        ],
         attributes:['id','title', 'start', 'end', 'allDay','clientid']
     }).then(appt=>res.json(appt))
 })
