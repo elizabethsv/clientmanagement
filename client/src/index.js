@@ -16,9 +16,9 @@ import Register from './components/users/Register'
 import requireAuth from './requireAuth'
 import RouteWithLayout from './RouteWithLayout'
 import PublicLayout from './PublicLayout'
-import AddClient from './components/pt/AddClients'
-import Client from './components/pt/Clients'
-import ClientInfo from './components/pt/ClientInfo'
+import AddClient from './components/pt/clients/AddClients'
+import Client from './components/pt/clients/Clients'
+import ClientInfo from './components/pt/clients/ClientInfo'
 const store = createStore(reducer)
 
 const token = localStorage.getItem('jsonwebtoken')

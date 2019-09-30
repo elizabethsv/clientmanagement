@@ -1,7 +1,7 @@
 import React, {useState, useLayoutEffect} from 'react'
 // import dayGridPlugin from '@fullcalendar/daygrid'; // for dayGridMonth view
 import './main.scss'
-import CancelAppt from '../CancelAppt'
+import CancelAppt from './CancelAppt'
 import Popover from '@material-ui/core/Popover';
 import DesktopSchedule from './DesktopSchedule'
 import MobileSchedule from './MobileSchedule'

@@ -4,9 +4,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction'; // for selectable
 // import dayGridPlugin from '@fullcalendar/daygrid'; // for dayGridMonth view
 import './main.scss'
-import CancelAppt from '../CancelAppt'
-import Popover from '@material-ui/core/Popover';
-import { isPropsEqual } from '@fullcalendar/core';
+
 
 const MobileSchedule = (props) =>{
 
