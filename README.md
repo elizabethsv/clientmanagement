@@ -6,10 +6,10 @@ A proof of concept application where trainers can schedule and manage appointmen
 <img src='./add_appt.gif'>
 
 #### Cancel Appointments 
-<img src='./cxl_appt'>
+<img src='./cxl_appt.gif'>
 
 #### Add Clients
-<img src="./add_client.gif'>
+<img src='./add_client.gif'>
 
 ## Technologies Used
 * React
