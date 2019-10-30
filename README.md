@@ -6,7 +6,6 @@ A proof of concept application where trainers can schedule and manage appointmen
 
 [![Demo](./add_cxl.png)](https://vimeo.com/369850287 "demo video")
 
-https://vimeo.com/369850048
 #### Add Clients
 [![Demo](./add_client.png)](https://vimeo.com/369850048 "demo video")
 
