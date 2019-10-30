@@ -14,7 +14,7 @@ export default function MaterialUIPickers(props) {
     const [setClient, setSelectedClient] = useState({id: '', firstName: ''})
     const [setEnd, setEndTime] = useState({end: null})
     const [apptInfo, setApptInfo] = useState({title: '', start: '', end: '', allDay: false})
-    
+    console.log(clientData)
     //Picks a date:
     const handleDateChange = date => {
       setSelectedDate(date);
@@ -33,15 +33,18 @@ export default function MaterialUIPickers(props) {
             axios.get('http://localhost:5000/clients')
                 .then(client=>{
                     setClientData(client.data)
+                    
         })
         }
         fetchClients()
+        console.log(clientData)
         
     },[])
 
     const handleClientSelection =(e)=>{
         let clientId = e.target.value
         setSelectedClient(clientId)
+        
     }
 
     const handleSubmit = () =>{
