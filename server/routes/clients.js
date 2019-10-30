@@ -4,7 +4,7 @@ const router = express.Router()
 router.get('/', (req, res)=>{
     models.Clients.findAll().then(client=>{
         res.json(client)
-    })
+    }).catch(err=>console.log(err))
 })
 
 router.post('/add',(req,res)=>{

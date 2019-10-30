@@ -288,3 +288,7 @@ select {
 select:focus{
     outline:none;
 }
+
+.MuiIconButton-root{
+    box-shadow:none;
+}
