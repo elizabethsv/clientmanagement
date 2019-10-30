@@ -1,7 +1,7 @@
 # Client Management App
 A proof of concept application where trainers can schedule and manage appointments and track their clients progress.
 
-## Features 
+## Current Features 
 #### Add Appointments
 <img src='./add_appt.gif'>
 
