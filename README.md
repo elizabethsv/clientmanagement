@@ -3,10 +3,12 @@ A proof of concept application where trainers can schedule and manage appointmen
 
 ## Current Features 
 #### Add/Cancel Appointments
-<iframe src="https://player.vimeo.com/video/369850287" width="640" height="393" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
+[![Demo](./add_cxl.png)](https://vimeo.com/369850287 "demo video")
+
+https://vimeo.com/369850048
 #### Add Clients
-<iframe src="https://player.vimeo.com/video/369850048" width="640" height="389" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+[![Demo](./add_client.png)](https://vimeo.com/369850048 "demo video")
 
 
 
