@@ -1,38 +1,42 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
 
-router.get('/', (req, res)=>{
-    models.Clients.findAll().then(client=>{
-        res.json(client)
-    }).catch(err=>console.log(err))
-})
-
-router.post('/add',(req,res)=>{
-    let firstName = req.body.firstname
-    let lastName = req.body.lastname
-    let email = req.body.email
-    let phone = req.body.phone
-
-    let user = models.Clients.create({
-        firstname: firstName,
-        lastname: lastName,
-        email: email,
-        password: null,
-        phone: phone
+router.get('/', (req, res) => {
+  models.Clients.findAll()
+    .then(client => {
+      res.json(client);
     })
-    res.json({user})
-})
+    .catch(err => console.log(err));
+});
 
-router.get('/info/:clientid', (req,res)=>{
-    let clientid = req.params.clientid
+router.post('/add', (req, res) => {
+  let firstName = req.body.firstName;
+  let lastName = req.body.lastName;
+  let email = req.body.email;
+  let phone = req.body.phoneNumber;
+  let dob = req.body.dob;
 
-    models.Clients.findAll({
-        where: {
-            id: clientid
-        }
-    }).then(client=>{
-        res.json(client)
-    })
-})
+  let user = models.Clients.create({
+    firstname: firstName,
+    lastname: lastName,
+    email: email,
+    password: null,
+    phone: phone,
+    DOB: dob
+  });
+  res.json({ user });
+});
 
-module.exports = router
+router.get('/info/:clientid', (req, res) => {
+  let clientid = req.params.clientid;
+
+  models.Clients.findAll({
+    where: {
+      id: clientid
+    }
+  }).then(client => {
+    res.json(client);
+  });
+});
+
+module.exports = router;

@@ -9,6 +9,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import { Formik, Form, Field } from 'formik';
 import { AddClientSchema } from '../../../schemas';
 
+//todo: associate user id w/ trainerID
 const useStyles = makeStyles({
   root: {
     lineHeight: '2.7em',
@@ -32,40 +33,14 @@ const useStyles = makeStyles({
 
 const AddClient = props => {
   const classes = useStyles();
-
-  const [clientData, getClientData] = useState({
-    firstname: '',
-    lastname: '',
-    email: '',
-    phone: ''
-  });
-
-  const [selectedDate, getSelectedDate] = useState(new Date());
-
-  const handleChange = e => {
-    getClientData({
-      ...clientData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleDateChange = date => {
-    getSelectedDate(date);
-  };
-
-  const handleSubmit = () => {
-    axios({
-      method: 'post',
-      url: 'http://localhost:5000/clients/add',
-      data: {
-        firstname: clientData.firstname,
-        lastname: clientData.lastname,
-        email: clientData.email,
-        phone: clientData.phone,
-        dob: selectedDate.toISOString()
-      }
-    }).then(() => props.history.push('/clients'));
-  };
+  //   const handleSubmit = values => {
+  //     console.log(values);
+  //     axios({
+  //       method: 'post',
+  //       url: 'http://localhost:5000/clients/add',
+  //       data: values
+  //     }).then(() => props.history.push('/clients'));
+  //   };
 
   return (
     <div className="dashboard-form">
@@ -73,15 +48,23 @@ const AddClient = props => {
         initialValues={{
           firstName: '',
           lastName: '',
-          email: ''
+          email: '',
+          phoneNumber: null,
+          dob: null
         }}
         validationSchema={AddClientSchema}
         onSubmit={values => {
-          // same shape as initial values
           console.log(values);
+          setTimeout(() => {
+            axios({
+              method: 'post',
+              url: 'http://localhost:5000/clients/add',
+              data: values
+            }).then(() => props.history.push('/clients'));
+          }, 400);
         }}
       >
-        {({ errors, touched }) => (
+        {({ errors, touched, values, setFieldValue }) => (
           <Form>
             <label>First Name</label>
             <Field name="firstName" />
@@ -99,41 +82,41 @@ const AddClient = props => {
               <div className="error-message">{errors.email}</div>
             ) : null}
             <label>Date of Birth</label>
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <KeyboardDatePicker
-                disableToolbar
-                variant="inline"
-                format="MM/dd/yyyy"
-                margin="normal"
-                id="date-picker-inline"
-                value={selectedDate}
-                onChange={date => handleDateChange(date)}
-                KeyboardButtonProps={{
-                  'aria-label': 'change date'
-                }}
-                InputProps={{
-                  classes: {
-                    root: classes.root,
-                    underline: classes.underline,
-                    focused: classes.focused
-                  }
-                }}
-              />
-            </MuiPickersUtilsProvider>
+            <Field name="dob">
+              {({ field, form }) => (
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <KeyboardDatePicker
+                    disableToolbar
+                    variant="inline"
+                    format="MM/dd/yyyy"
+                    margin="normal"
+                    id="date-picker-inline"
+                    value={field.value}
+                    onChange={dob => form.setFieldValue('dob', dob)}
+                    KeyboardButtonProps={{
+                      'aria-label': 'change date'
+                    }}
+                    InputProps={{
+                      classes: {
+                        root: classes.root,
+                        underline: classes.underline,
+                        focused: classes.focused
+                      }
+                    }}
+                  />
+                </MuiPickersUtilsProvider>
+              )}
+            </Field>
+            <label>Phone Number</label>
+            <Field name="phoneNumber" />
+            {errors.phoneNumber && touched.phoneNumber ? (
+              <div className="error-message">{errors.phoneNumber}</div>
+            ) : null}
+
             <button type="submit">Add Client</button>
           </Form>
         )}
       </Formik>
-      {/* <label>First Name</label>
-    <input type="text" name="firstname" onChange={handleChange} />
-    <label>Last Name</label>
-    <input type="text" name="lastname" onChange={handleChange} />
-    <label>E-mail</label>
-    <input type="text" name="email" onChange={handleChange} />
-    <label>Phone Number</label>
-    <input type="text" name="phone" onChange={handleChange} /> */}
-
-      {/* <button onClick={handleSubmit}>Add Client</button> */}
     </div>
   );
 };
