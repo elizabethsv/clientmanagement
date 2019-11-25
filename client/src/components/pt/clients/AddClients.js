@@ -1,51 +1,124 @@
-import React,{useState}from 'react'
-import axios from 'axios'
+import React, { useState } from 'react';
+import axios from 'axios';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker
+} from '@material-ui/pickers';
+import { makeStyles } from '@material-ui/core/styles';
+import DateFnsUtils from '@date-io/date-fns';
+import { Formik, Form, Field } from 'formik';
+import { AddClientSchema } from '../../../schemas';
 
-
-const AddClient = (props) =>{
-    
-    const [clientData, getClientData] = useState({
-        firstname: '',
-        lastname: '',
-        email: '',
-        phone: ''
-    })
-
-    const handleChange= (e)=>{
-        getClientData({
-            ...clientData,
-            [e.target.name]: e.target.value})
+//todo: associate user id w/ trainerID
+const useStyles = makeStyles({
+  root: {
+    lineHeight: '2.7em',
+    borderRadius: '3px'
+  },
+  underline: {
+    '&:before': {
+      border: '1px solid #00adb5'
+    },
+    '&:after': {
+      border: '1px solid #00adb5'
+    },
+    '&:hover:not(.Mui-disabled):before': {
+      border: '1px solid #00adb5'
     }
+  },
+  focused: {
+    borderBottomColor: '#00adb5'
+  }
+});
 
-    const handleSubmit = () =>{
-        axios({
-            method: 'post',
-            url: 'http://localhost:5000/clients/add',
-            data: {
-                firstname: clientData.firstname,
-                lastname: clientData.lastname,
-                email: clientData.email,
-                phone: clientData.phone
-                }
-            }).then(()=> props.history.push('/clients'))
-           
-        
-        }
-     
-    return(
-        <div className="dashboard-form">
+const AddClient = props => {
+  const classes = useStyles();
+  //   const handleSubmit = values => {
+  //     console.log(values);
+  //     axios({
+  //       method: 'post',
+  //       url: 'http://localhost:5000/clients/add',
+  //       data: values
+  //     }).then(() => props.history.push('/clients'));
+  //   };
+
+  return (
+    <div className="dashboard-form">
+      <Formik
+        initialValues={{
+          firstName: '',
+          lastName: '',
+          email: '',
+          phoneNumber: null,
+          dob: null
+        }}
+        validationSchema={AddClientSchema}
+        onSubmit={values => {
+          console.log(values);
+          setTimeout(() => {
+            axios({
+              method: 'post',
+              url: 'http://localhost:5000/clients/add',
+              data: values
+            }).then(() => props.history.push('/clients'));
+          }, 400);
+        }}
+      >
+        {({ errors, touched, values, setFieldValue }) => (
+          <Form>
             <label>First Name</label>
-            <input type="text" name="firstname" onChange={handleChange}/>
+            <Field name="firstName" />
+            {errors.firstName && touched.firstName ? (
+              <div className="error-message">{errors.firstName}</div>
+            ) : null}
             <label>Last Name</label>
-            <input type="text" name="lastname" onChange={handleChange}/>
-            <label>E-mail</label>
-            <input type="text" name="email" onChange={handleChange}/>
+            <Field name="lastName" />
+            {errors.lastName && touched.lastName ? (
+              <div className="error-message">{errors.lastName}</div>
+            ) : null}
+            <label>E-Mail</label>
+            <Field name="email" type="email" />
+            {errors.email && touched.email ? (
+              <div className="error-message">{errors.email}</div>
+            ) : null}
+            <label>Date of Birth</label>
+            <Field name="dob">
+              {({ field, form }) => (
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <KeyboardDatePicker
+                    disableToolbar
+                    variant="inline"
+                    format="MM/dd/yyyy"
+                    margin="normal"
+                    id="date-picker-inline"
+                    value={field.value}
+                    onChange={dob => form.setFieldValue('dob', dob)}
+                    KeyboardButtonProps={{
+                      'aria-label': 'change date'
+                    }}
+                    InputProps={{
+                      classes: {
+                        root: classes.root,
+                        underline: classes.underline,
+                        focused: classes.focused
+                      }
+                    }}
+                  />
+                </MuiPickersUtilsProvider>
+              )}
+            </Field>
             <label>Phone Number</label>
-            <input type="text" name="phone" onChange={handleChange}/>
+            <Field name="phoneNumber" />
+            {errors.phoneNumber && touched.phoneNumber ? (
+              <div className="error-message">{errors.phoneNumber}</div>
+            ) : null}
 
-            <button onClick={handleSubmit}>Add Client</button>
-        </div>
-    )
-}
+            <button type="submit">Add Client</button>
+          </Form>
+        )}
+      </Formik>
+    </div>
+  );
+};
 
-export default AddClient
+export default AddClient;
