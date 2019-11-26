@@ -24,6 +24,7 @@ const store = createStore(reducer);
 const token = localStorage.getItem('jsonwebtoken');
 setAuthenticationHeader(token);
 //requireAuth()
+console.log(token);
 
 ReactDOM.render(
   <Provider store={store}>
@@ -43,12 +44,12 @@ ReactDOM.render(
         <RouteWithLayout
           layout={BaseLayout}
           path="/clients"
-          component={Client}
+          component={requireAuth(Client)}
         />
         <RouteWithLayout
           layout={BaseLayout}
           path="/addclient"
-          component={AddClient}
+          component={requireAuth(AddClient)}
         />
         <RouteWithLayout
           layout={BaseLayout}
