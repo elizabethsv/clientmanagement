@@ -1,8 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const verify = require('./checkToken');
 
-router.get('/', (req, res) => {
-  models.Clients.findAll()
+router.get('/', verify, (req, res) => {
+  models.Clients.findAll({
+    where: {
+      trainerid: req.user.id
+    }
+  })
     .then(client => {
       res.json(client);
     })
