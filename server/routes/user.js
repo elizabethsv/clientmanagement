@@ -48,8 +48,7 @@ router.post('/login', (req, res) => {
             { id: user.get('id') },
             process.env.SECRET_TOKEN
           );
-          //   res.header('auth-token', token)
-          res.json({ token: token });
+          res.header('auth-token', token).json({ token: token });
         } else {
           console.log('error');
         }

@@ -1,13 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const verifyToken = require('./verifyToken');
+const verify = require('./checkToken');
 
-router.get('/', verifyToken, (req, res) => {
-  const trainerId = req.user;
-  console.log(trainerId);
+router.get('/', verify, (req, res) => {
   models.Clients.findAll({
     where: {
-      trainerid: trainerId
+      trainerid: req.user.id
     }
   })
     .then(client => {
