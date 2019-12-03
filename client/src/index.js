@@ -34,12 +34,12 @@ ReactDOM.render(
         <RouteWithLayout
           layout={BaseLayout}
           path="/schedule"
-          component={SchedulePage}
+          component={requireAuth(SchedulePage)}
         />
         <RouteWithLayout
           layout={BaseLayout}
           path="/addappt"
-          component={MaterialUIPickers}
+          component={requireAuth(MaterialUIPickers)}
         />
         <RouteWithLayout
           layout={BaseLayout}
@@ -54,7 +54,7 @@ ReactDOM.render(
         <RouteWithLayout
           layout={BaseLayout}
           path="/clientinfo/:id"
-          component={ClientInfo}
+          component={requireAuth(ClientInfo)}
         />
         <RouteWithLayout
           layout={PublicLayout}

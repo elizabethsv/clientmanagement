@@ -5,6 +5,7 @@ const PORT = 5000;
 global.models = require('./models');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
+const verify = require('./routes/checkToken');
 
 dotenv.config();
 // const account= require('./routes/users')
@@ -16,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/appts', appts);
-app.use('/clients', clients);
+app.use('/clients', verify, clients);
 app.use('/', users);
 
 app.listen(PORT, () => {

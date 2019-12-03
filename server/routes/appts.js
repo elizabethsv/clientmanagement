@@ -1,47 +1,43 @@
-const express = require('express')
-const router = express.Router()
-const Op = require('../models').Sequelize.Op;
+const express = require('express');
+const router = express.Router();
+const verify = require('./checkToken');
 
+router.get('/', verify, (req, res) => {
+  models.PtSession.findAll({
+    where: { status: 'active', trainerid: req.user.id },
+    attributes: ['id', 'title', 'start', 'end', 'allDay', 'trainerid']
+  }).then(appt => res.json(appt));
+});
 
-router.get('/',(req,res)=>{
-    models.PtSession.findAll({
-        where:{status:'active'},
-        attributes:['id','title', 'start', 'end', 'allDay']
-    }).then(appt=>res.json(appt))
-    
-})
+router.get('/cancelled', verify, (req, res) => {
+  models.PtSession.findAll({
+    where: { status: 'cancelled', trainerid: req.user.id },
+    attributes: ['id', 'title', 'start', 'end', 'allDay', 'trainerid']
+  }).then(appt => res.json(appt));
+});
 
-router.get('/cancelled',(req,res)=>{
-    models.PtSession.findAll({
-        where:{status:'cancelled'},
-        attributes:['id','title', 'start', 'end', 'allDay']
-    }).then(appt=>res.json(appt))
-    
-})
+router.post('/add', (req, res) => {
+  let clientid = req.body.clientid;
+  let start = req.body.start;
+  let end = req.body.end;
 
-router.post('/add',(req,res)=>{
-    let clientid = req.body.clientid
-    let start = req.body.start
-    let end = req.body.end
-    
-    models.Clients.findOne({
-        where: {
-            id:clientid
-        },
-        attributes: ['id','firstname']
-    }).then(user=>{
-       let appt= models.PtSession.create({
-                title: user.firstname,
-                start: start,
-                end: end,
-                allDay: false, 
-                clientid: clientid,
-                status: 'active'
-            })
-            res.json({appt})
-    })
-
-})
+  models.Clients.findOne({
+    where: {
+      id: clientid
+    },
+    attributes: ['id', 'firstname']
+  }).then(user => {
+    let appt = models.PtSession.create({
+      title: user.firstname,
+      start: start,
+      end: end,
+      allDay: false,
+      clientid: clientid,
+      status: 'active'
+    });
+    res.json({ appt });
+  });
+});
 
 // app.post('/addsession',(req,res)=>{
 //     let title= req.body.title
@@ -54,58 +50,53 @@ router.post('/add',(req,res)=>{
 //         allDay: false,
 //         status:'active'
 //     })
-    
+
 //     res.json({PtSession})
-    
+
 // })
 
-router.get('/upcoming', (req,res)=>{
-    let todaysDate = new Date()
-    var newDateObj = new Date(todaysDate.getTime() + 360*60000)
-   
-    models.PtSession.findAll({
-        where:{
-            start: { 
-                [Op.between]: [todaysDate, newDateObj]
-              }
-        },
-        order:[
-            ['start','ASC']
-        ],
-        attributes:['id','title', 'start', 'end', 'allDay','clientid']
-    }).then(appt=>res.json(appt))
-})
+router.get('/upcoming', (req, res) => {
+  let todaysDate = new Date();
+  var newDateObj = new Date(todaysDate.getTime() + 360 * 60000);
 
-router.put('/:apptid',(req,res)=>{
-    let apptid = req.params.apptid
-    let start = req.body.start
-    let end = req.body.end
-    var values = { start: start, end: end};
-    var selector = { 
-    where: { id:apptid }
-    };
-    models.PtSession.update(values, selector)
-    .then(updatedObj=> {
-        res.json(updatedObj)
-    });
+  models.PtSession.findAll({
+    where: {
+      trainerid: req.user.id,
+      start: {
+        [Op.between]: [todaysDate, newDateObj]
+      }
+    },
+    order: [['start', 'ASC']],
+    attributes: ['id', 'title', 'start', 'end', 'allDay', 'clientid']
+  }).then(appt => res.json(appt));
+});
 
-})
+router.put('/:apptid', (req, res) => {
+  let apptid = req.params.apptid;
+  let start = req.body.start;
+  let end = req.body.end;
+  var values = { start: start, end: end };
+  var selector = {
+    where: { id: apptid }
+  };
+  models.PtSession.update(values, selector).then(updatedObj => {
+    res.json(updatedObj);
+  });
+});
 
+router.put('/cancel/:apptid', (req, res) => {
+  let apptid = req.params.apptid;
+  let status = req.body.status;
 
-router.put('/cancel/:apptid', (req,res)=>{
-    let apptid = req.params.apptid
-    let status = req.body.status
+  let values = { status: status };
 
-    let values = {status:status}
+  let selector = {
+    where: { id: apptid }
+  };
 
-    let selector ={
-        where:{id:apptid}
-    }
-    
-    models.PtSession.update(values, selector)
-        .then(updatedAppt => {
-            res.json(updatedAppt)
-        })
-})
+  models.PtSession.update(values, selector).then(updatedAppt => {
+    res.json(updatedAppt);
+  });
+});
 
-module.exports = router
+module.exports = router;
