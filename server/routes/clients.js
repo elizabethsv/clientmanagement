@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const verify = require('./checkToken');
 
-router.get('/', verify, (req, res) => {
+router.get('/', (req, res) => {
   models.Clients.findAll({
     where: {
       trainerid: req.user.id
@@ -27,7 +27,8 @@ router.post('/add', (req, res) => {
     email: email,
     password: null,
     phone: phone,
-    DOB: dob
+    DOB: dob,
+    trainerid: req.user.id
   });
   res.json({ user });
 });
