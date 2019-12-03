@@ -2,10 +2,9 @@ import React from 'react';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction'; // for selectable
-// import dayGridPlugin from '@fullcalendar/daygrid'; // for dayGridMonth view
+import axios from 'axios';
 import './main.scss';
 const token = localStorage.getItem('jsonwebtoken');
-console.log(token);
 
 const MobileSchedule = props => {
   return (
@@ -28,19 +27,25 @@ const MobileSchedule = props => {
       eventSources={[
         {
           events: function(info, successCallback, failureCallback) {
-            request
-              .get('http://localhost:5000/appts')
-              .set('auth-token', token)
-              .query({
-                start: info.start.valueOf(),
-                end: info.end.valueOf()
+            axios
+              .get('http://localhost:5000/appts', {
+                params: {
+                  start: info.start.valueOf(),
+                  end: info.end.valueOf()
+                },
+                headers: {
+                  'auth-token': token
+                }
               })
               .then(res => {
+                console.log(res);
                 successCallback(
-                  res.body.map(event => {
+                  res.data.map(event => {
                     return {
                       title: event.title,
-                      start: event.start
+                      start: event.start,
+                      end: event.end,
+                      id: event.id
                     };
                   })
                 );
@@ -49,19 +54,24 @@ const MobileSchedule = props => {
         },
         {
           events: function(info, successCallback, failureCallback) {
-            request
-              .get('http://localhost:5000/appts/cancelled')
-              .set('auth-token', token)
-              .query({
-                start: info.start.valueOf(),
-                end: info.end.valueOf()
+            axios
+              .get('http://localhost:5000/appts/cancelled', {
+                params: {
+                  start: info.start.valueOf(),
+                  end: info.end.valueOf()
+                },
+                headers: {
+                  'auth-token': token
+                }
               })
               .then(res => {
                 successCallback(
-                  res.body.map(event => {
+                  res.data.map(event => {
                     return {
+                      id: event.id,
                       title: event.title,
-                      start: event.start
+                      start: event.start,
+                      end: event.end
                     };
                   })
                 );
