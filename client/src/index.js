@@ -23,8 +23,6 @@ const store = createStore(reducer);
 
 const token = localStorage.getItem('jsonwebtoken');
 setAuthenticationHeader(token);
-//requireAuth()
-console.log(token);
 
 ReactDOM.render(
   <Provider store={store}>
