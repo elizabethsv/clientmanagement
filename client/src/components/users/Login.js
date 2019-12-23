@@ -16,7 +16,7 @@ const Login = props => {
 
   const handleLogin = () => {
     axios
-      .post('/login', {
+      .post('https://hidden-peak-08843.herokuapp.com/login', {
         email: user.email,
         password: user.password
       })

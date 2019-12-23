@@ -19,7 +19,7 @@ const Registration = props => {
   const handleRegistration = () => {
     axios({
       method: 'post',
-      url: '/register-trainer',
+      url: 'https://hidden-peak-08843.herokuapp.com/register-trainer',
       data: {
         firstname: user.firstname,
         lastname: user.lastname,
