@@ -10,6 +10,12 @@ const verify = require('./routes/checkToken');
 dotenv.config();
 // const account= require('./routes/users')
 
+const { Pool } = require('pg');
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+});
+
 const appts = require('./routes/appts');
 const clients = require('./routes/clients');
 const users = require('./routes/user');

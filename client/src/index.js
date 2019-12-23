@@ -30,7 +30,12 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        <RouteWithLayout layout={BaseLayout} exact path="/" component={App} />
+        <RouteWithLayout
+          layout={BaseLayout}
+          exact
+          path="/"
+          component={requireAuth(App)}
+        />
         <RouteWithLayout
           layout={BaseLayout}
           path="/schedule"
